@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Github User 3</string>
+    <string name="name">Name</string>
+    <string name="username">Username</string>
+    <string name="company">Company</string>
+    <string name="garis_permisah">|</string>
+    <string name="blog">blog</string>
+    <string name="location">Location</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="tab_text_1">Pengikut</string>
+    <string name="tab_text_2">Mengikuti</string>
+    <string name="_100">100</string>
+    <string name="repository">Repository</string>
+    <string name="follower">Pengikut</string>
+    <string name="following">Mengikuti</string>
+    <string name ="change_language_setting" translatable="false">Setting Rubah Bahasa</string>
+    <string name="search_hint" translatable="false">Cari Username</string>
+
+    <string name="check_follower" translatable="false"> Pengikut tidak ada </string>
+    <string name="check_following" translatable="false"> Mengikuti tidak ada </string>
+    <string name="check_search" translatable="false"> Data tidak ada </string>
+    <string name="check_internet" translatable="false"> Periksa koneksi Internet </string>
+
+</resources>

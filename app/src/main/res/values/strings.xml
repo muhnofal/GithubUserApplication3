@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Github User 3</string>
+    <string name="name">Name</string>
+    <string name="username">Username</string>
+    <string name="company">Company</string>
+    <string name="garis_permisah">|</string>
+    <string name="blog">blog</string>
+    <string name="location">Location</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="tab_text_1">Follower</string>
+    <string name="tab_text_2">Following</string>
+    <string name="_100">100</string>
+    <string name="repository">Repository</string>
+    <string name="follower">Follower</string>
+    <string name="following">Following</string>
+    <string name="change_language_setting" translatable="false">change language setting</string>
+    <string name="search_hint" translatable="false">Search Username</string>
+    <string name="search" translatable="false">search</string>
+
+    <string name="check_follower" translatable="false"> Follower is empty </string>
+    <string name="check_following" translatable="false"> Following is empty </string>
+    <string name="check_search" translatable="false"> Data is empty </string>
+    <string name="check_internet" translatable="false"> Check internet connection</string>
+    <string name="zeroValue">0</string>
+    <string name="favorite">favorite</string>
+    <string name="container">container</string>
+
+</resources>
