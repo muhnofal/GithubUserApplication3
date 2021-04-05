@@ -4,7 +4,7 @@
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/black_blue</item>
         <item name="colorPrimaryVariant">@color/black_blue</item>
-        <item name="colorOnPrimary">@color/dark_blue</item>
+        <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/black_blue</item>
         <item name="colorSecondaryVariant">@color/black_blue</item>
@@ -22,9 +22,10 @@
     </style>
 
 
-    <style name="text_black_blue_18sp">
+    <style name="text_black_blue_15sp">
         <item name="android:textColor">@color/black_blue</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textAlignment">center</item>
     </style>
 
 </resources>

@@ -21,8 +21,8 @@
     <string name="check_following" translatable="false"> Following is empty </string>
     <string name="check_search" translatable="false"> Data is empty </string>
     <string name="check_internet" translatable="false"> Check internet connection</string>
-    <string name="zeroValue">0</string>
-    <string name="favorite">favorite</string>
-    <string name="container">container</string>
+    <string name="zeroValue" translatable="false">0</string>
+    <string name="favorite" translatable="false">favorite</string>
+    <string name="container" translatable="false">container</string>
 
 </resources>
