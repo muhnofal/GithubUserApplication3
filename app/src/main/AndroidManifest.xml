@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GithubUserApplication2">
-        <activity android:name=".FavoriteUserActivity"></activity>
+        <activity android:name=".FavoriteUserDetailActivity"></activity>
+        <activity android:name=".FavoriteUserActivity" />
         <activity android:name=".SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,7 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".UserDetailActivity" />
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

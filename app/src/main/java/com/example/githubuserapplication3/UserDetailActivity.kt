@@ -41,7 +41,6 @@ class UserDetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_user_detail)
 
         //binding
         binding = ActivityUserDetailBinding.inflate(layoutInflater)
@@ -72,6 +71,7 @@ class UserDetailActivity : AppCompatActivity() {
         //Get data from API
         requestData(id.orEmpty())
 
+        //insert to database
         setStatusFavorite(statusFavorite)
         binding.floatingActionButton.setOnClickListener{
             statusFavorite = !statusFavorite
@@ -109,8 +109,6 @@ class UserDetailActivity : AppCompatActivity() {
                 val repository = response.body()?.repos
                 val follower = response.body()?.followers
                 val following = response.body()?.followers
-//                val favUsername = username.toString().trim()
-//                val favAvatar = avatar.toString().trim()
 
                 Glide.with(this@UserDetailActivity).load(avatar).into(binding.avatar)
                 binding.name.text = name
@@ -122,7 +120,7 @@ class UserDetailActivity : AppCompatActivity() {
                 binding.follower.text = follower.toString()
                 binding.following.text = following.toString()
 
-
+                //put database
                 values.put(DatabaseContract.FavoriteColumns.USERNAME, username)
                 values.put(DatabaseContract.FavoriteColumns.AVATAR_URL, avatar)
 
