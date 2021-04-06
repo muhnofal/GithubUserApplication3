@@ -1,7 +1,9 @@
 package com.example.githubuserapplication3
 import android.content.ContentValues
+import android.database.ContentObserver
 import android.os.Bundle
 import android.os.Handler
+import android.os.HandlerThread
 import android.view.View
 import android.widget.*
 import androidx.annotation.StringRes
@@ -13,8 +15,14 @@ import com.example.githubuserapplication3.Data.DataRetrofit.getData
 import com.example.githubuserapplication3.Model.UserItem
 import com.example.githubuserapplication3.databinding.ActivityUserDetailBinding
 import com.example.githubuserapplication3.db.DatabaseContract
+import com.example.githubuserapplication3.db.DatabaseContract.FavoriteColumns.Companion.CONTENT_URI
 import com.example.githubuserapplication3.db.FavoriteHelper
+import com.example.githubuserapplication3.helper.MappingHelper
 import com.google.android.material.tabs.TabLayoutMediator
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -49,7 +57,7 @@ class UserDetailActivity : AppCompatActivity() {
         favoriteHelper.open()
 
         //Get ID
-        val id: String? = intent.getStringExtra(EXTRA_USERNAME)
+        val username: String? = intent.getStringExtra(EXTRA_USERNAME)
 
         //ViewPager
         val viewPagerAdapter = ViewPagerAdapter(this)
@@ -59,7 +67,7 @@ class UserDetailActivity : AppCompatActivity() {
         }.attach()
 
         //Send Data to ViewPagerAdapter
-        viewPagerAdapter.id = id
+        viewPagerAdapter.id = username
 
         //Action bar title
         supportActionBar?.title = getString(R.string.app_name)
@@ -68,7 +76,7 @@ class UserDetailActivity : AppCompatActivity() {
         showLogin(true)
 
         //Get data from API
-        requestData(id.orEmpty())
+        requestData(username.orEmpty())
 
         //insert to database
         setStatusFavorite(statusFavorite)
@@ -76,13 +84,18 @@ class UserDetailActivity : AppCompatActivity() {
             statusFavorite = !statusFavorite
 
             if(statusFavorite){
-                val result = favoriteHelper.insert(values)
-                if(result <= 0){
-                    Toast.makeText(this, "Failed to insert data", Toast.LENGTH_SHORT).show()
-                }else{
-                    Toast.makeText(this, "Add to favorite", Toast.LENGTH_SHORT).show()
-                    favoriteHelper.close()
+
+                val handlerThread = HandlerThread("DataObserver")
+                handlerThread.start()
+                val handler = Handler(handlerThread.looper)
+
+                val myObserver = object : ContentObserver(handler){
+                    override fun onChange(selfChange: Boolean) {
+                        loadFavoriteAsync()
+                    }
                 }
+
+
             }else{
                 favoriteHelper.deleteById("id")
                 Toast.makeText(this, "Menghapus", Toast.LENGTH_SHORT).show()
@@ -148,6 +161,24 @@ class UserDetailActivity : AppCompatActivity() {
             binding.topContainer.visibility = View.VISIBLE
             binding.tabLayout.visibility = View.VISIBLE
             binding.viewPager.visibility = View.VISIBLE
+        }
+    }
+
+    private fun loadFavoriteAsync(){
+
+        GlobalScope.launch(Dispatchers.Main) {
+            val defferedFavorite = async(Dispatchers.IO){
+                val cursor = contentResolver.query(CONTENT_URI, null, null, null, null)
+                MappingHelper.mapCursorToArrayList(cursor)
+            }
+        }
+
+        val result = favoriteHelper.insert(values)
+        if(result <= 0){
+            Toast.makeText(this, "Failed to insert data", Toast.LENGTH_SHORT).show()
+        }else{
+            Toast.makeText(this, "Add to favorite", Toast.LENGTH_SHORT).show()
+            favoriteHelper.close()
         }
     }
 
