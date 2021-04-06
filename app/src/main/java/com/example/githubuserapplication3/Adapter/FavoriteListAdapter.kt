@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.githubuserapplication3.CustomOnClickListener
+import com.example.githubuserapplication3.FavoriteUserActivity
 import com.example.githubuserapplication3.FavoriteUserDetailActivity
 import com.example.githubuserapplication3.databinding.ItemRowFavoriteBinding
 import com.example.githubuserapplication3.Model.Favorite
@@ -23,6 +24,12 @@ class FavoriteListAdapter(private val activity: Activity) : RecyclerView.Adapter
         }
         this.listFavorites.addAll(listFavorites)
         notifyDataSetChanged()
+    }
+
+    fun removeItem(position: Int){
+        this.listFavorites.removeAt(position)
+        notifyItemRemoved(position)
+        notifyItemRangeChanged(position, this.listFavorites.size)
     }
 
     inner class ViewHolder(val binding: ItemRowFavoriteBinding): RecyclerView.ViewHolder(binding.root){
@@ -48,9 +55,9 @@ class FavoriteListAdapter(private val activity: Activity) : RecyclerView.Adapter
             override fun onItemClicked(view: View, position: Int) {
                 val intent = Intent(activity, FavoriteUserDetailActivity::class.java)
                 intent.putExtra(FavoriteUserDetailActivity.EXTRA_FAVORITE, favorite)
-                activity.startActivity(intent)
+                intent.putExtra(FavoriteUserDetailActivity.EXTRA_POSITION, position)
+                activity.startActivityForResult(intent, FavoriteUserDetailActivity.REQUEST_DATA)
             }
-
         }))
 
     }

@@ -208,10 +208,10 @@
         tools:text="@string/location" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/delete_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Delete Favorite"
+        android:text="@string/delete_favorite"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

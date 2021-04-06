@@ -52,4 +52,19 @@ class FavoriteUserActivity : AppCompatActivity() {
         onBackPressed()
         return super.onSupportNavigateUp()
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (data != null){
+            when(requestCode){
+                FavoriteUserDetailActivity.RESULT_DELETE -> {
+                    val position = data.getIntExtra(FavoriteUserDetailActivity.EXTRA_POSITION, 0)
+                    adapter.removeItem(position)
+                    Toast.makeText(this, "Data Telah terhapus", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
+    }
 }

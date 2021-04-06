@@ -26,11 +26,10 @@ class UserDetailActivity : AppCompatActivity() {
 
     private lateinit var favoriteHelper: FavoriteHelper
     val values = ContentValues()
-    var statusFavorite: Boolean = false
+    private var statusFavorite: Boolean = false
 
     companion object{
         const val EXTRA_USERNAME = "extra_username"
-
         @StringRes
         private val TAB_TITLES = intArrayOf(
                 R.string.tab_text_1,

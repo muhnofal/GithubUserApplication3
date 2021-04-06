@@ -24,5 +24,6 @@
     <string name="zeroValue" translatable="false">0</string>
     <string name="favorite" translatable="false">favorite</string>
     <string name="container" translatable="false">container</string>
+    <string name="delete_favorite">Delete Favorite</string>
 
 </resources>

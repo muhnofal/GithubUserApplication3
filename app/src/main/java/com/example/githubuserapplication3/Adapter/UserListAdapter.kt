@@ -28,8 +28,8 @@ class UserListAdapter(private var list: ArrayList<UserItem>, private val onItemC
         Glide.with(holder.itemView.context)
             .load(user.image)
             .apply(RequestOptions().override(55,55))
-            .into(holder.iv_avatar)
-        holder.tv_username.text = user.username
+            .into(holder.ivAvatar)
+        holder.tvUsername.text = user.username
 
         holder.itemView.setOnClickListener {
             onItemClick(user)
@@ -42,8 +42,8 @@ class UserListAdapter(private var list: ArrayList<UserItem>, private val onItemC
     }
 
     class viewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var iv_avatar: ImageView = itemView.findViewById(R.id.item_user_avatar)
-        var tv_username: TextView = itemView.findViewById(R.id.user_username)
+        var ivAvatar: ImageView = itemView.findViewById(R.id.item_user_avatar)
+        var tvUsername: TextView = itemView.findViewById(R.id.user_username)
     }
 
 }
