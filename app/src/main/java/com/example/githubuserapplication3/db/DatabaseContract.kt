@@ -3,8 +3,10 @@ package com.example.githubuserapplication3.db
 import android.net.Uri
 import android.provider.BaseColumns
 
-internal class DatabaseContract {
+object DatabaseContract {
 
+    const val AUTHORITY = "com.example.githubuserapplication3"
+    const val SCHEME = "content"
 
     internal class FavoriteColumns : BaseColumns{
         companion object{
@@ -12,9 +14,8 @@ internal class DatabaseContract {
             const val _ID = "_id"
             const val USERNAME = "username"
             const val AVATAR_URL = "avatar"
-            const val AUTHORITY = "com.example.githubuserapplication3"
-            const val SCHEME = "content"
 
+            // untuk membuat URI content:com.example.githubuserapplication3/favorite
             val CONTENT_URI: Uri = Uri.Builder().scheme(SCHEME)
                     .authority(AUTHORITY)
                     .appendPath(TABLE_NAME)

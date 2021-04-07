@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.githubuserapplication3">
-
+    <permission android:name="com.example.githubuserapplication3.READ_DATABASE" android:protectionLevel="normal"/>
+    <permission android:name="com.example.githubuserapplication3.WRITE_DATABASE" android:protectionLevel="normal"/>
     <uses-permission android:name="android.permission.INTERNET" />
-    <permission android:name="com.dicoding.mynotesapp.READ_DATABASE" android:protectionLevel="normal"/>
-    <permission android:name="com.dicoding.mynotesapp.WRITE_DATABASE" android:protectionLevel="normal"/>
+
+    <queries>
+        <provider android:authorities="com.example.githubuserapplication3"
+            android:exported="false" />
+    </queries>
 
     <application
         android:allowBackup="true"
@@ -13,14 +17,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GithubUserApplication2">
-        <provider
-            android:name=".GithubUserProvider"
-            android:authorities="com.example.githubuserapplication3"
-            android:enabled="true"
-            android:exported="true"
-            android:readPermission="com.example.githubuserapplication3.READ_DATABASE"
-            android:writePermission="com.example.githubuserapplication3.WRITE_DATABASE">
-        </provider>
+
+
 
         <activity android:name=".FavoriteUserDetailActivity" />
         <activity android:name=".FavoriteUserActivity" />
@@ -33,6 +31,16 @@
         </activity>
         <activity android:name=".UserDetailActivity" />
         <activity android:name=".MainActivity" />
+
+        <provider
+            android:name=".GithubUserProvider"
+            android:authorities="com.example.githubuserapplication3"
+            android:enabled="true"
+            android:exported="true"
+            android:readPermission="com.example.githubuserapplication3.READ_DATABASE"
+            android:writePermission="com.example.githubuserapplication3.WRITE_DATABASE">
+        </provider>
+
     </application>
 
 </manifest>

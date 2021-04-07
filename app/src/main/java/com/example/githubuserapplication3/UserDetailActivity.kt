@@ -85,16 +85,13 @@ class UserDetailActivity : AppCompatActivity() {
 
             if(statusFavorite){
 
-                val handlerThread = HandlerThread("DataObserver")
-                handlerThread.start()
-                val handler = Handler(handlerThread.looper)
-
-                val myObserver = object : ContentObserver(handler){
-                    override fun onChange(selfChange: Boolean) {
-                        loadFavoriteAsync()
-                    }
+                val result = favoriteHelper.insert(values)
+                if(result <= 0){
+                    Toast.makeText(this, "Failed to insert data", Toast.LENGTH_SHORT).show()
+                }else{
+                    Toast.makeText(this, "Add to favorite", Toast.LENGTH_SHORT).show()
+                    favoriteHelper.close()
                 }
-
 
             }else{
                 favoriteHelper.deleteById("id")

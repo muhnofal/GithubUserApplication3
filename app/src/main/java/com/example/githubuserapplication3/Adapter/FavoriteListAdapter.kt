@@ -19,9 +19,12 @@ class FavoriteListAdapter(private val activity: Activity) : RecyclerView.Adapter
     var listFavorites = ArrayList<Favorite>()
 
     set(listFavorites) {
-        if (listFavorites.size > 0){
-            this.listFavorites.clear()
-        }
+//        if (listFavorites.size > 0){
+//            this.listFavorites.clear()
+//        }
+//        this.listFavorites.addAll(listFavorites)
+//        notifyDataSetChanged()
+        this.listFavorites.clear()
         this.listFavorites.addAll(listFavorites)
         notifyDataSetChanged()
     }
@@ -56,7 +59,7 @@ class FavoriteListAdapter(private val activity: Activity) : RecyclerView.Adapter
                 val intent = Intent(activity, FavoriteUserDetailActivity::class.java)
                 intent.putExtra(FavoriteUserDetailActivity.EXTRA_FAVORITE, favorite)
                 intent.putExtra(FavoriteUserDetailActivity.EXTRA_POSITION, position)
-                activity.startActivityForResult(intent, FavoriteUserDetailActivity.REQUEST_DATA)
+                activity.startActivity(intent)
             }
         }))
 

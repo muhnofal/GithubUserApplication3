@@ -6,8 +6,7 @@ import android.content.Context
 import android.content.UriMatcher
 import android.database.Cursor
 import android.net.Uri
-import androidx.core.content.contentValuesOf
-import com.example.githubuserapplication3.db.DatabaseContract.FavoriteColumns.Companion.AUTHORITY
+import com.example.githubuserapplication3.db.DatabaseContract.AUTHORITY
 import com.example.githubuserapplication3.db.DatabaseContract.FavoriteColumns.Companion.CONTENT_URI
 import com.example.githubuserapplication3.db.DatabaseContract.FavoriteColumns.Companion.TABLE_NAME
 import com.example.githubuserapplication3.db.FavoriteHelper

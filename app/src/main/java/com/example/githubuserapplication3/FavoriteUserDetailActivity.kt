@@ -1,6 +1,7 @@
 package com.example.githubuserapplication3
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -12,7 +13,9 @@ import com.example.githubuserapplication3.Data.DataRetrofit
 import com.example.githubuserapplication3.Model.Favorite
 import com.example.githubuserapplication3.Model.UserItem
 import com.example.githubuserapplication3.databinding.ActivityFavoriteUserDetailBinding
+import com.example.githubuserapplication3.db.DatabaseContract.FavoriteColumns.Companion.CONTENT_URI
 import com.example.githubuserapplication3.db.FavoriteHelper
+import com.example.githubuserapplication3.helper.MappingHelper
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -23,12 +26,11 @@ class FavoriteUserDetailActivity : AppCompatActivity(){
     private lateinit var binding: ActivityFavoriteUserDetailBinding
     private lateinit var favoriteHelper: FavoriteHelper
     private var position: Int = 0
+    private lateinit var uriWithId: Uri
 
     companion object{
         const val EXTRA_FAVORITE = "extra_favorite"
         const val EXTRA_POSITION = "extra_position"
-        const val REQUEST_DATA = 110
-        const val RESULT_DELETE= 110
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,19 +52,20 @@ class FavoriteUserDetailActivity : AppCompatActivity(){
         //getInstance
         favoriteHelper = FavoriteHelper.getInstance(applicationContext)
 
+        //request data
         requestData(username.orEmpty())
 
+        //delete data
         binding.deleteButton.setOnClickListener{
             favoriteHelper.open()
-            val result = favoriteHelper.deleteById(favorite?.id.toString()).toLong()
-            if(result > 0){
-                val intent = Intent()
-                intent.putExtra(EXTRA_POSITION, position)
-                setResult(RESULT_DELETE, intent)
-                finish()
-            }else{
-                Toast.makeText(this, "Tidak bisa dihapus", Toast.LENGTH_SHORT).show()
+            uriWithId = Uri.parse(CONTENT_URI.toString() + "/" + favorite?.id)
+            val cursor = contentResolver.query(uriWithId, null, null, null, null)
+            if (cursor != null){
+                favorite = MappingHelper.mapCursorTopObject(cursor)
             }
+            contentResolver.delete(uriWithId, null, null)
+            Toast.makeText(this, "Success to delete", Toast.LENGTH_SHORT).show()
+            finish()
         }
     }
 
@@ -106,4 +109,3 @@ class FavoriteUserDetailActivity : AppCompatActivity(){
     }
 
 }
-
