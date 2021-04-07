@@ -37,7 +37,7 @@ class UserListAdapter(private val activity: Activity): RecyclerView.Adapter<User
         holder.itemView.setOnClickListener(CustomOnClickListener(position, object : CustomOnClickListener.OnItemClickCallback{
             override fun onItemClicked(view: View, position: Int) {
                 val intent = Intent(activity, UserDetailActivity::class.java)
-                intent.putExtra(UserDetailActivity.EXTRA_USERNAME, user.username)
+                intent.putExtra(UserDetailActivity.EXTRA_USER, user)
 //                intent.putExtra(UserDetailActivity.EXTRA_FAVORITE, favorite)
                 activity.startActivity(intent)
             }

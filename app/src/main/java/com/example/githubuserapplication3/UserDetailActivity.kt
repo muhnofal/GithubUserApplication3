@@ -32,12 +32,11 @@ class UserDetailActivity : AppCompatActivity() {
     private lateinit var favoriteHelper: FavoriteHelper
     val values = ContentValues()
     private var statusFavorite: Boolean = false
-    var favorite: Favorite? = null
+    private var user: UserItem? = null
     private lateinit var uriWithId: Uri
-    private var idCount: Int? = null
 
     companion object{
-        const val EXTRA_USERNAME = "extra_username"
+        const val EXTRA_USER = "extra_username"
         const val EXTRA_FAVORITE = "extra_favorite"
         @StringRes
         private val TAB_TITLES = intArrayOf(
@@ -57,8 +56,10 @@ class UserDetailActivity : AppCompatActivity() {
         favoriteHelper = FavoriteHelper.getInstance(applicationContext)
         favoriteHelper.open()
 
+        user = intent.getParcelableExtra(EXTRA_USER)
+
         //Get ID
-        val username: String? = intent.getStringExtra(EXTRA_USERNAME)
+        val username: String? = user?.username
 
         //ViewPager
         val viewPagerAdapter = ViewPagerAdapter(this)
@@ -85,24 +86,9 @@ class UserDetailActivity : AppCompatActivity() {
             statusFavorite = !statusFavorite
 
             if(statusFavorite){
-
-                val result = favoriteHelper.insert(values)
-                if(result <= 0){
-                    Toast.makeText(this, "Failed to insert data", Toast.LENGTH_SHORT).show()
-                }else{
-                    Toast.makeText(this, "Add to favorite", Toast.LENGTH_SHORT).show()
-                    favoriteHelper.close()
-                }
-
+                contentResolver.insert(CONTENT_URI, values)
             }else{
-
-                uriWithId = Uri.parse(CONTENT_URI.toString() + "/" + favorite?.id)
-                val cursor = contentResolver.query(uriWithId, null, null, null, null)
-                if (cursor != null){
-                    favorite = MappingHelper.mapCursorTopObject(cursor)
-                }
-                contentResolver.delete(uriWithId, null, null)
-                Toast.makeText(this, "Menghapus", Toast.LENGTH_SHORT).show()
+                favoriteHelper.deleteByUsername(user?.username.toString())
             }
             setStatusFavorite(statusFavorite)
         }
@@ -127,14 +113,16 @@ class UserDetailActivity : AppCompatActivity() {
                 val following = response.body()?.followers
 
                 Glide.with(this@UserDetailActivity).load(avatar).into(binding.avatar)
-                binding.name.text = name
-                binding.username.text = username
-                binding.company.text = company
-                binding.blog.text = blog
-                binding.location.text = location
-                binding.repository.text = repository.toString()
-                binding.follower.text = follower.toString()
-                binding.following.text = following.toString()
+                binding.let {
+                    it.name.text = name
+                    it.username.text = username
+                    it.company.text = company
+                    it.blog.text = blog
+                    it.location.text = location
+                    it.repository.text = repository.toString()
+                    it.follower.text = follower.toString()
+                    it.following.text = following.toString()
+                }
 
                 //put database
                 values.put(DatabaseContract.FavoriteColumns.USERNAME, username)
@@ -177,5 +165,8 @@ class UserDetailActivity : AppCompatActivity() {
         }
     }
 
-
+    override fun onDestroy() {
+        super.onDestroy()
+        favoriteHelper.close()
+    }
 }

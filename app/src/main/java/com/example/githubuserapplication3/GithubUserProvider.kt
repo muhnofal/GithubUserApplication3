@@ -41,6 +41,7 @@ class GithubUserProvider : ContentProvider() {
         return when(sUriMatcher.match(uri)){
             FAVORITE -> favoriteHelper.queryAll()
             FAVORITE_ID -> favoriteHelper.queryById(uri.lastPathSegment.toString())
+//            FAVORITE_ID -> favoriteHelper.queryById
             else -> null
         }
     }

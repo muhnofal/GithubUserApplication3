@@ -1,6 +1,9 @@
 package com.example.githubuserapplication3.Model
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class UserItem(
 
     @SerializedName("login")
@@ -22,4 +25,4 @@ data class UserItem(
     @SerializedName("following")
     var following: Int = 0
 
-)
+): Parcelable

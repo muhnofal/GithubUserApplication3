@@ -5,6 +5,7 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import com.example.githubuserapplication3.db.DatabaseContract.FavoriteColumns.Companion.TABLE_NAME
+import com.example.githubuserapplication3.db.DatabaseContract.FavoriteColumns.Companion.USERNAME
 import com.example.githubuserapplication3.db.DatabaseContract.FavoriteColumns.Companion._ID
 import java.sql.SQLException
 
@@ -59,6 +60,10 @@ internal class FavoriteHelper(context: Context) {
 
     fun deleteById(id: String): Int {
         return database.delete(TABLE_NAME, "$_ID = '$id'", null)
+    }
+
+    fun deleteByUsername(id: String): Int{
+        return database.delete(TABLE_NAME, "$USERNAME = '$id'", null)
     }
 
 }
