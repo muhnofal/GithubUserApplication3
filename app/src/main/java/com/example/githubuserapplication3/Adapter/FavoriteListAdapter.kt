@@ -12,6 +12,7 @@ import com.example.githubuserapplication3.CustomOnClickListener
 import com.example.githubuserapplication3.FavoriteUserDetailActivity
 import com.example.githubuserapplication3.databinding.ItemRowFavoriteBinding
 import com.example.githubuserapplication3.Model.Favorite
+import com.example.githubuserapplication3.UserDetailActivity
 
 class FavoriteListAdapter(private val activity: Activity) : RecyclerView.Adapter<FavoriteListAdapter.ViewHolder>() {
 

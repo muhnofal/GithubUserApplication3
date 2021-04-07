@@ -51,10 +51,6 @@ class FavoriteUserDetailActivity : AppCompatActivity(){
         //delete data
         binding.deleteButton.setOnClickListener{
             uriWithId = Uri.parse(CONTENT_URI.toString() + "/" + favorite?.id)
-            val cursor = contentResolver.query(uriWithId, null, null, null, null)
-//            if (cursor != null){
-//                favorite = MappingHelper.mapCursorTopObject(cursor)
-//            }
             contentResolver.delete(uriWithId, null, null)
             Toast.makeText(this, "Success to delete", Toast.LENGTH_SHORT).show()
             finish()

@@ -38,7 +38,6 @@ class UserListAdapter(private val activity: Activity): RecyclerView.Adapter<User
             override fun onItemClicked(view: View, position: Int) {
                 val intent = Intent(activity, UserDetailActivity::class.java)
                 intent.putExtra(UserDetailActivity.EXTRA_USER, user)
-//                intent.putExtra(UserDetailActivity.EXTRA_FAVORITE, favorite)
                 activity.startActivity(intent)
             }
 

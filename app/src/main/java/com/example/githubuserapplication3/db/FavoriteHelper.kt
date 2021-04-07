@@ -50,6 +50,10 @@ internal class FavoriteHelper(context: Context) {
         return database.query(DATABASE_TABLE, null, "$_ID = ?", arrayOf(id), null, null, null, null)
     }
 
+    fun queryByUsername(id: String?): Cursor {
+        return database.query(DATABASE_TABLE, null, "$USERNAME = ?", arrayOf(id), null, null, null, null)
+    }
+
     fun insert(values: ContentValues?): Long {
         return database.insert(DATABASE_TABLE, null, values)
     }

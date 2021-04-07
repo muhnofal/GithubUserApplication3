@@ -1,5 +1,6 @@
 package com.example.githubuserapplication3
 import android.content.ContentValues
+import android.database.Cursor
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
@@ -12,13 +13,11 @@ import com.bumptech.glide.Glide
 import com.example.githubuserapplication3.Adapter.ViewPagerAdapter
 import com.example.githubuserapplication3.Data.ApiService
 import com.example.githubuserapplication3.Data.DataRetrofit.getData
-import com.example.githubuserapplication3.Model.Favorite
 import com.example.githubuserapplication3.Model.UserItem
 import com.example.githubuserapplication3.databinding.ActivityUserDetailBinding
 import com.example.githubuserapplication3.db.DatabaseContract
 import com.example.githubuserapplication3.db.DatabaseContract.FavoriteColumns.Companion.CONTENT_URI
 import com.example.githubuserapplication3.db.FavoriteHelper
-import com.example.githubuserapplication3.helper.MappingHelper
 import com.google.android.material.tabs.TabLayoutMediator
 import retrofit2.Call
 import retrofit2.Callback
@@ -28,16 +27,14 @@ import retrofit2.Response
 class UserDetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityUserDetailBinding
-
     private lateinit var favoriteHelper: FavoriteHelper
     val values = ContentValues()
     private var statusFavorite: Boolean = false
     private var user: UserItem? = null
-    private lateinit var uriWithId: Uri
 
     companion object{
         const val EXTRA_USER = "extra_username"
-        const val EXTRA_FAVORITE = "extra_favorite"
+        private const val TAG_CHECK_FAVORITE_2 = "check_favorite_2"
         @StringRes
         private val TAB_TITLES = intArrayOf(
                 R.string.tab_text_1,
@@ -53,12 +50,16 @@ class UserDetailActivity : AppCompatActivity() {
         binding = ActivityUserDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        //Action bar title
+        supportActionBar?.title = getString(R.string.app_name)
+
         favoriteHelper = FavoriteHelper.getInstance(applicationContext)
         favoriteHelper.open()
 
+        //get data from MainActivity
         user = intent.getParcelableExtra(EXTRA_USER)
 
-        //Get ID
+        //get username from activity
         val username: String? = user?.username
 
         //ViewPager
@@ -67,40 +68,37 @@ class UserDetailActivity : AppCompatActivity() {
         TabLayoutMediator(binding.tabLayout, binding.viewPager){ tab, position ->
             tab.text = resources.getString(TAB_TITLES[position])
         }.attach()
-
-        //Send Data to ViewPagerAdapter
-        viewPagerAdapter.id = username
-
-        //Action bar title
-        supportActionBar?.title = getString(R.string.app_name)
+        viewPagerAdapter.id = username //Send Data to ViewPagerAdapter
 
         //visibility
-        showLogin(true)
+        showLoading(true)
 
         //Get data from API
         requestData(username.orEmpty())
 
-        //insert to database
-        setStatusFavorite(statusFavorite)
+        favoriteCheck()
         binding.floatingActionButton.setOnClickListener{
-            statusFavorite = !statusFavorite
-
             if(statusFavorite){
-                contentResolver.insert(CONTENT_URI, values)
-            }else{
                 favoriteHelper.deleteByUsername(user?.username.toString())
+                statusFavorite = false
+                setStatusFavorite(statusFavorite)
+            }else{
+                contentResolver.insert(CONTENT_URI, values)
+                statusFavorite = true
+                setStatusFavorite(statusFavorite)
+                Log.d(TAG_CHECK_FAVORITE_2, "favoriteCheck2:  " + statusFavorite)
             }
-            setStatusFavorite(statusFavorite)
         }
 
     }
 
+    //from activity
     private fun requestData(id: String) {
         val apiService = getData()?.create(ApiService::class.java)
         apiService?.getUserDetail(id)?.enqueue(object : Callback<UserItem?> {
             override fun onResponse(call: Call<UserItem?>, response: Response<UserItem?>) {
 
-                showLogin(false)
+                showLoading(false)
 
                 val name = response.body()?.name
                 val username = response.body()?.username
@@ -134,14 +132,19 @@ class UserDetailActivity : AppCompatActivity() {
                 val handler = Handler()
                 handler.postDelayed(Runnable {
                     Toast.makeText(this@UserDetailActivity, "Check Internet", Toast.LENGTH_SHORT).show()
-                    showLogin(false)
+                    showLoading(false)
                 }, 2000)
             }
 
         })
     }
 
-    fun showLogin(state: Boolean){
+    private fun requestDataFavorite(id: String){
+        showLoading(false)
+        binding.name.text = id
+    }
+
+    fun showLoading(state: Boolean){
         if(state){
             binding.progressbar.visibility = View.VISIBLE
             binding.topContainer.visibility = View.GONE
@@ -165,8 +168,18 @@ class UserDetailActivity : AppCompatActivity() {
         }
     }
 
+    private fun favoriteCheck(){
+        val value:String? = user?.username
+        val cursor: Cursor = favoriteHelper.queryByUsername(value)
+        if (cursor.moveToNext()){
+            statusFavorite = true
+            setStatusFavorite(statusFavorite)
+        }
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         favoriteHelper.close()
     }
+
 }
