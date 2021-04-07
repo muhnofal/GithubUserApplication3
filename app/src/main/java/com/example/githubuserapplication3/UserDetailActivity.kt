@@ -1,9 +1,9 @@
 package com.example.githubuserapplication3
 import android.content.ContentValues
-import android.database.ContentObserver
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
-import android.os.HandlerThread
+import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.annotation.StringRes
@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide
 import com.example.githubuserapplication3.Adapter.ViewPagerAdapter
 import com.example.githubuserapplication3.Data.ApiService
 import com.example.githubuserapplication3.Data.DataRetrofit.getData
+import com.example.githubuserapplication3.Model.Favorite
 import com.example.githubuserapplication3.Model.UserItem
 import com.example.githubuserapplication3.databinding.ActivityUserDetailBinding
 import com.example.githubuserapplication3.db.DatabaseContract
@@ -19,10 +20,6 @@ import com.example.githubuserapplication3.db.DatabaseContract.FavoriteColumns.Co
 import com.example.githubuserapplication3.db.FavoriteHelper
 import com.example.githubuserapplication3.helper.MappingHelper
 import com.google.android.material.tabs.TabLayoutMediator
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -35,9 +32,13 @@ class UserDetailActivity : AppCompatActivity() {
     private lateinit var favoriteHelper: FavoriteHelper
     val values = ContentValues()
     private var statusFavorite: Boolean = false
+    var favorite: Favorite? = null
+    private lateinit var uriWithId: Uri
+    private var idCount: Int? = null
 
     companion object{
         const val EXTRA_USERNAME = "extra_username"
+        const val EXTRA_FAVORITE = "extra_favorite"
         @StringRes
         private val TAB_TITLES = intArrayOf(
                 R.string.tab_text_1,
@@ -94,7 +95,13 @@ class UserDetailActivity : AppCompatActivity() {
                 }
 
             }else{
-                favoriteHelper.deleteById("id")
+
+                uriWithId = Uri.parse(CONTENT_URI.toString() + "/" + favorite?.id)
+                val cursor = contentResolver.query(uriWithId, null, null, null, null)
+                if (cursor != null){
+                    favorite = MappingHelper.mapCursorTopObject(cursor)
+                }
+                contentResolver.delete(uriWithId, null, null)
                 Toast.makeText(this, "Menghapus", Toast.LENGTH_SHORT).show()
             }
             setStatusFavorite(statusFavorite)
@@ -161,24 +168,6 @@ class UserDetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun loadFavoriteAsync(){
-
-        GlobalScope.launch(Dispatchers.Main) {
-            val defferedFavorite = async(Dispatchers.IO){
-                val cursor = contentResolver.query(CONTENT_URI, null, null, null, null)
-                MappingHelper.mapCursorToArrayList(cursor)
-            }
-        }
-
-        val result = favoriteHelper.insert(values)
-        if(result <= 0){
-            Toast.makeText(this, "Failed to insert data", Toast.LENGTH_SHORT).show()
-        }else{
-            Toast.makeText(this, "Add to favorite", Toast.LENGTH_SHORT).show()
-            favoriteHelper.close()
-        }
-    }
-
     @JvmName("setStatusFavorite1")
     fun setStatusFavorite(statusFavorite: Boolean){
         if(statusFavorite){
@@ -187,5 +176,6 @@ class UserDetailActivity : AppCompatActivity() {
             binding.floatingActionButton.setImageResource(R.drawable.ic_baseline_favorite_border_24)
         }
     }
+
 
 }

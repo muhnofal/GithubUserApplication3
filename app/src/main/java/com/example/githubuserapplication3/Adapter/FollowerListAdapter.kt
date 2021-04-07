@@ -1,16 +1,11 @@
 package com.example.githubuserapplication3.Adapter
 
-import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.githubuserapplication3.Model.FollowerItem
-import com.example.githubuserapplication3.R
 import com.example.githubuserapplication3.databinding.ItemRowFollowerBinding
 
 class FollowerListAdapter(private var followerList: ArrayList<FollowerItem>) : RecyclerView.Adapter<FollowerListAdapter.ViewHolder>() {

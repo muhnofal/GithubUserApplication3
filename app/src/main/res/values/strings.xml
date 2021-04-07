@@ -24,6 +24,9 @@
     <string name="zeroValue" translatable="false">0</string>
     <string name="favorite" translatable="false">favorite</string>
     <string name="container" translatable="false">container</string>
-    <string name="delete_favorite">Delete Favorite</string>
+    <string name="delete_favorite" translatable="false">Delete Favorite</string>
+    <string name="no_data" translatable="false">User does not exist</string>
+    <string name="to_search_user" translatable="false">\u0020 to search user</string>
+    <string name="click" translatable="false">Click \u0020</string>
 
 </resources>

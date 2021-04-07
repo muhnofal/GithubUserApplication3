@@ -43,6 +43,7 @@ class MainActivity : AppCompatActivity() {
 
         //Action bar title
         supportActionBar?.title = getString(R.string.app_name)
+        showClickSearch(true)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -59,8 +60,10 @@ class MainActivity : AppCompatActivity() {
             override fun onQueryTextSubmit(searchText: String?): Boolean {
 
                 if (searchText?.isNotEmpty() == true) {
-                    val search: String = searchText.toLowerCase()
+                    val search: String = searchText.toLowerCase(Locale.ROOT)
                     showLoading(true)
+                    showClickSearch(false)
+                    showNoData(false)
                     setData(search)
                 }
 
@@ -101,21 +104,20 @@ class MainActivity : AppCompatActivity() {
                         val items: List<UserItem>? = response.body()?.getUsers()
 
                         showLoading(false)
+                        showNoData(false)
+
                         for (userItem in items.orEmpty()) {
                             listItem.add(userItem)
                         }
 
-                        val adapter = UserListAdapter(listItem) { user ->
-                            val intent = Intent(this@MainActivity, UserDetailActivity::class.java)
-                            intent.putExtra(UserDetailActivity.EXTRA_USERNAME, user.username)
-                            startActivity(intent)
-                        }
+                        val adapter = UserListAdapter(this@MainActivity)
+                        adapter.list = listItem
 
                         binding.recycler.adapter = adapter
                         binding.recycler.adapter?.notifyDataSetChanged()
 
                         if (listItem.isEmpty()) {
-                            Toast.makeText(this@MainActivity, resources.getString(R.string.check_search), Toast.LENGTH_SHORT).show()
+                            showNoData(true)
                         }
 
                     }
@@ -133,8 +135,26 @@ class MainActivity : AppCompatActivity() {
     private fun showLoading(state: Boolean){
         if(state){
             binding.activityMainProgressBar.visibility = View.VISIBLE
+            binding.recycler.visibility = View.GONE
         }else{
             binding.activityMainProgressBar.visibility = View.GONE
+            binding.recycler.visibility = View.VISIBLE
+        }
+    }
+
+    private fun showNoData(state: Boolean){
+        if(state){
+            binding.noData.visibility = View.VISIBLE
+        }else{
+            binding.noData.visibility = View.GONE
+        }
+    }
+
+    private fun showClickSearch(state: Boolean){
+        if(state){
+            binding.clickSearchIcon.visibility = View.VISIBLE
+        }else{
+            binding.clickSearchIcon.visibility = View.GONE
         }
     }
 

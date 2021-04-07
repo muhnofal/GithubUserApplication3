@@ -1,11 +1,9 @@
 package com.example.githubuserapplication3
 
-import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import android.view.View
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.example.githubuserapplication3.Data.ApiService
@@ -24,7 +22,6 @@ class FavoriteUserDetailActivity : AppCompatActivity(){
 
     var favorite: Favorite? = null
     private lateinit var binding: ActivityFavoriteUserDetailBinding
-    private lateinit var favoriteHelper: FavoriteHelper
     private var position: Int = 0
     private lateinit var uriWithId: Uri
 
@@ -48,16 +45,11 @@ class FavoriteUserDetailActivity : AppCompatActivity(){
         }else{
             favorite = Favorite()
         }
-
-        //getInstance
-        favoriteHelper = FavoriteHelper.getInstance(applicationContext)
-
         //request data
         requestData(username.orEmpty())
 
         //delete data
         binding.deleteButton.setOnClickListener{
-            favoriteHelper.open()
             uriWithId = Uri.parse(CONTENT_URI.toString() + "/" + favorite?.id)
             val cursor = contentResolver.query(uriWithId, null, null, null, null)
             if (cursor != null){

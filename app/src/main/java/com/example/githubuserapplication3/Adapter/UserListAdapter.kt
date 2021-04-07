@@ -1,21 +1,24 @@
 package com.example.githubuserapplication3.Adapter
 
-import android.content.Context
+import android.app.Activity
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.example.githubuserapplication3.CustomOnClickListener
+import com.example.githubuserapplication3.Model.Favorite
 import com.example.githubuserapplication3.Model.UserItem
 import com.example.githubuserapplication3.R
 import com.example.githubuserapplication3.UserDetailActivity
 
-class UserListAdapter(private var list: ArrayList<UserItem>, private val onItemClick: (UserItem) -> Unit): RecyclerView.Adapter<UserListAdapter.viewHolder>() {
+class UserListAdapter(private val activity: Activity): RecyclerView.Adapter<UserListAdapter.viewHolder>() {
+
+    var list = ArrayList<UserItem>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): viewHolder {
         val view: View = LayoutInflater.from(parent.context).inflate(R.layout.item_row_user, parent, false)
@@ -31,9 +34,15 @@ class UserListAdapter(private var list: ArrayList<UserItem>, private val onItemC
             .into(holder.ivAvatar)
         holder.tvUsername.text = user.username
 
-        holder.itemView.setOnClickListener {
-            onItemClick(user)
-        }
+        holder.itemView.setOnClickListener(CustomOnClickListener(position, object : CustomOnClickListener.OnItemClickCallback{
+            override fun onItemClicked(view: View, position: Int) {
+                val intent = Intent(activity, UserDetailActivity::class.java)
+                intent.putExtra(UserDetailActivity.EXTRA_USERNAME, user.username)
+//                intent.putExtra(UserDetailActivity.EXTRA_FAVORITE, favorite)
+                activity.startActivity(intent)
+            }
+
+        }))
 
     }
 

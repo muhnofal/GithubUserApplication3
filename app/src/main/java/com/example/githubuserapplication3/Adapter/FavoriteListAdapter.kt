@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.githubuserapplication3.CustomOnClickListener
-import com.example.githubuserapplication3.FavoriteUserActivity
 import com.example.githubuserapplication3.FavoriteUserDetailActivity
 import com.example.githubuserapplication3.databinding.ItemRowFavoriteBinding
 import com.example.githubuserapplication3.Model.Favorite
@@ -19,11 +18,6 @@ class FavoriteListAdapter(private val activity: Activity) : RecyclerView.Adapter
     var listFavorites = ArrayList<Favorite>()
 
     set(listFavorites) {
-//        if (listFavorites.size > 0){
-//            this.listFavorites.clear()
-//        }
-//        this.listFavorites.addAll(listFavorites)
-//        notifyDataSetChanged()
         this.listFavorites.clear()
         this.listFavorites.addAll(listFavorites)
         notifyDataSetChanged()
@@ -45,7 +39,6 @@ class FavoriteListAdapter(private val activity: Activity) : RecyclerView.Adapter
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-//        holder.bind(listFavorites[position])
         val favorite = listFavorites[position]
 
 
