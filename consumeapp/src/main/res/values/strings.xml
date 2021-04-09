@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">ConsumeApp</string>
+
+    <string name="name">Name</string>
+    <string name="username">Username</string>
+    <string name="company">Company</string>
+    <string name="garis_permisah">|</string>
+    <string name="blog">blog</string>
+    <string name="location">Location</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="tab_text_1">Follower</string>
+    <string name="tab_text_2">Following</string>
+    <string name="_100">100</string>
+    <string name="repository">Repository</string>
+    <string name="follower">Follower</string>
+    <string name="following">Following</string>
+    <string name="change_language_setting">change language setting</string>
+    <string name="search_hint">Search Username</string>
+    <string name="search">search</string>
+    <string name="check_follower"> Follower is empty </string>
+    <string name="check_following"> Following is empty </string>
+    <string name="check_search"> Data is empty </string>
+    <string name="check_internet"> Check internet connection</string>
+    <string name="zeroValue">0</string>
+    <string name="favorite">favorite</string>
+    <string name="container">container</string>
+    <string name="delete_favorite">Delete Favorite</string>
+    <string name="no_data">User does not exist</string>
+    <string name="to_search_user">\u0020 to search user</string>
+    <string name="click">click \u0020</string>
+    <string name="set_reminder">set reminder</string>
+    <string name="set_reminder_activity">Set Reminder</string>
+    <string name="cancel_reminder">Cancel Reminder</string>
+    <string name="reminder_note">when you set the reminder, you will get notification \nat 9:00 AM</string>
+    <string name="not_have_favorite_user">not have favorite user</string>
+    <string name="reminder_on">Reminder ON</string>
+    <string name="reminder_off">Reminder OFF</string>
+    <string name="succes_delete">Success to delete</string>
+    <string name="hello_notif">Hello, how are you</string>
+    <string name="user_detail">User Detail</string>
+    <string name="no_follower">no follower</string>
+    <string name="no_following">no following</string>
+
+</resources>
