@@ -1,4 +1,4 @@
-package com.example.githubuserapplication3.Adapter
+package com.example.githubuserapplication3.adapter
 
 import android.app.Activity
 import android.content.Intent
@@ -11,8 +11,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.githubuserapplication3.CustomOnClickListener
 import com.example.githubuserapplication3.FavoriteUserDetailActivity
 import com.example.githubuserapplication3.databinding.ItemRowFavoriteBinding
-import com.example.githubuserapplication3.Model.Favorite
-import com.example.githubuserapplication3.UserDetailActivity
+import com.example.githubuserapplication3.model.Favorite
 
 class FavoriteListAdapter(private val activity: Activity) : RecyclerView.Adapter<FavoriteListAdapter.ViewHolder>() {
 

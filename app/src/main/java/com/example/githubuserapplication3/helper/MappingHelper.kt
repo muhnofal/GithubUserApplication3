@@ -1,7 +1,7 @@
 package com.example.githubuserapplication3.helper
 
 import android.database.Cursor
-import com.example.githubuserapplication3.Model.Favorite
+import com.example.githubuserapplication3.model.Favorite
 import com.example.githubuserapplication3.db.DatabaseContract
 
 object MappingHelper {

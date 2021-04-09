@@ -28,7 +28,7 @@
         android:theme="@style/Theme.GithubUserApplication2">
 
         <receiver
-            android:name=".AlarmReceiver"
+            android:name=".alarm.AlarmReceiver"
             android:enabled="true"
             android:exported="true"/>
 

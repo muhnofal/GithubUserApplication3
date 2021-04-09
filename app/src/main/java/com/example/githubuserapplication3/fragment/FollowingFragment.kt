@@ -1,4 +1,4 @@
-package com.example.githubuserapplication3.Fragment
+package com.example.githubuserapplication3.fragment
 
 import android.os.Bundle
 import android.os.Handler
@@ -8,10 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.githubuserapplication3.Data.ApiService
-import com.example.githubuserapplication3.Data.DataRetrofit.getData
-import com.example.githubuserapplication3.Adapter.FollowingListAdapter
-import com.example.githubuserapplication3.Model.FollowingItem
+import com.example.githubuserapplication3.data.ApiService
+import com.example.githubuserapplication3.data.DataRetrofit.getData
+import com.example.githubuserapplication3.adapter.FollowingListAdapter
+import com.example.githubuserapplication3.model.FollowingItem
 import com.example.githubuserapplication3.R
 import com.example.githubuserapplication3.databinding.FragmentFollowingBinding
 import retrofit2.Call

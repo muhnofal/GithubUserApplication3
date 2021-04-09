@@ -21,5 +21,25 @@
     <string name="check_following" translatable="false"> Mengikuti tidak ada </string>
     <string name="check_search" translatable="false"> Data tidak ada </string>
     <string name="check_internet" translatable="false"> Periksa koneksi Internet </string>
+    <string name="search">cari</string>
+    <string name="zeroValue">0</string>
+    <string name="favorite">favorite</string>
+    <string name="container">container</string>
+    <string name="delete_favorite">Hapus Favorite</string>
+    <string name="no_data">User tidak ditemukan</string>
+    <string name="to_search_user">\u0020 untuk mencari user</string>
+    <string name="click">tekan \u0020</string>
+    <string name="set_reminder">atur pengingat</string>
+    <string name="set_reminder_activity">Atur Pengingat</string>
+    <string name="cancel_reminder">Batalkan Pengingat</string>
+    <string name="reminder_note">ketika kamu mengatur pengingat, kamu akan mendapatkan notifikasi \npada jam 9:00 pagi</string>
+    <string name="not_have_favorite_user">tidak memiliki user favorite</string>
+    <string name="reminder_on">Pengingat Aktif</string>
+    <string name="reminder_off">Pengingat TIdak Aktif</string>
+    <string name="succes_delete">Berhasil menghapus</string>
+    <string name="hello_notif">Hallo, apa kabar</string>
+    <string name="user_detail">User Detail</string>
+    <string name="no_follower">tidak ada follower</string>
+    <string name="no_following">tidak ada following</string>
 
 </resources>

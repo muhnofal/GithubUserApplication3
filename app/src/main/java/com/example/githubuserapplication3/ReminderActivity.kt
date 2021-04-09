@@ -4,10 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.CompoundButton
-import android.widget.Toast
-import com.example.githubuserapplication3.databinding.ActivityMainBinding
+import com.example.githubuserapplication3.alarm.AlarmReceiver
 import com.example.githubuserapplication3.databinding.ActivityReminderBinding
 
 class ReminderActivity : AppCompatActivity(){
@@ -26,11 +23,14 @@ class ReminderActivity : AppCompatActivity(){
         binding = ActivityReminderBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        //Action bar title
+        supportActionBar?.title = getString(R.string.set_reminder_activity)
+
         loadData()
 
-        binding.reminderSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
+        binding.reminderSwitch.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked){
-                alarmReceiver.setDailyReminder(this, AlarmReceiver.TYPE_REPEATING, "Open the app please")
+                alarmReceiver.setDailyReminder(this, AlarmReceiver.TYPE_REPEATING, resources.getString(R.string.hello_notif))
             }else{
                 alarmReceiver.cancelReminder(this, AlarmReceiver.TYPE_REPEATING)
             }

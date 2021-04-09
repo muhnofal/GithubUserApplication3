@@ -1,4 +1,4 @@
-package com.example.githubuserapplication3
+package com.example.githubuserapplication3.alarm
 
 import android.app.AlarmManager
 import android.app.NotificationChannel
@@ -7,14 +7,12 @@ import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.media.Ringtone
 import android.media.RingtoneManager
 import android.os.Build
-import android.util.Log
 import android.widget.Toast
 import androidx.core.app.NotificationCompat
-import java.text.ParseException
-import java.text.SimpleDateFormat
+import com.example.githubuserapplication3.MainActivity
+import com.example.githubuserapplication3.R
 import java.util.*
 
 class AlarmReceiver : BroadcastReceiver() {
@@ -23,8 +21,6 @@ class AlarmReceiver : BroadcastReceiver() {
         const val TYPE_REPEATING = "RepeatingAlarm"
         const val EXTRA_MESSAGE = "message"
         const val EXTRA_TYPE = "type"
-
-        private const val ID_ONETIME = 100
         private const val ID_REPEATING = 101
 
         private const val TIME_DAILY = "09:00" //reminder will start at 09:00
@@ -33,15 +29,7 @@ class AlarmReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
         // This method is called when the BroadcastReceiver is receiving an Intent broadcast.
-        val type = intent.getStringExtra(EXTRA_TYPE)
         val message = intent.getStringExtra(EXTRA_MESSAGE)
-
-//        val title = if (type.equals(TYPE_ONE_TIME, ignoreCase = true)) TYPE_ONE_TIME else TYPE_REPEATING
-//        val notifId = if (type.equals(TYPE_ONE_TIME, ignoreCase = true)) ID_ONETIME else ID_REPEATING
-
-//        if (message != null){
-//            showAlarmNotification(context, message)
-//        }
 
         if (message != null) {
             showAlarmNotification(context, message)
@@ -52,7 +40,7 @@ class AlarmReceiver : BroadcastReceiver() {
     fun setDailyReminder(context: Context, type: String, message: String){
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val intent = Intent(context, AlarmReceiver::class.java)
-//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+
         intent.putExtra(EXTRA_MESSAGE, message)
         intent.putExtra(EXTRA_TYPE, type)
 
@@ -65,7 +53,7 @@ class AlarmReceiver : BroadcastReceiver() {
 
         val pendingIntent = PendingIntent.getBroadcast(context, ID_REPEATING, intent, 0)
         alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, AlarmManager.INTERVAL_DAY, pendingIntent)
-        Toast.makeText(context, "Reminder ON", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, R.string.reminder_on, Toast.LENGTH_SHORT).show()
     }
 
     fun cancelReminder(context: Context, type: String){
@@ -76,7 +64,7 @@ class AlarmReceiver : BroadcastReceiver() {
         pendingIntent.cancel()
 
         alarmManager.cancel(pendingIntent)
-        Toast.makeText(context, "Reminder OFF", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, R.string.reminder_off, Toast.LENGTH_SHORT).show()
     }
 
     private fun showAlarmNotification(context: Context, message: String){

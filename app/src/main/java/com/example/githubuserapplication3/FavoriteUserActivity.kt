@@ -6,9 +6,8 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.HandlerThread
 import android.view.View
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.githubuserapplication3.Adapter.FavoriteListAdapter
+import com.example.githubuserapplication3.adapter.FavoriteListAdapter
 import com.example.githubuserapplication3.databinding.ActivityFavoriteUserBinding
 import com.example.githubuserapplication3.db.DatabaseContract.FavoriteColumns.Companion.CONTENT_URI
 import com.example.githubuserapplication3.helper.MappingHelper
@@ -81,7 +80,7 @@ class FavoriteUserActivity : AppCompatActivity() {
         return super.onSupportNavigateUp()
     }
 
-    fun showFavoriteData(state: Boolean){
+    private fun showFavoriteData(state: Boolean){
         if(state){
             binding.favoriteData.visibility = View.VISIBLE
             binding.favoriteRecycler.visibility = View.GONE

@@ -25,8 +25,6 @@ class GithubUserProvider : ContentProvider() {
 
             //content: //com.example.githubuserapplication3/favorite/id
             sUriMatcher.addURI(AUTHORITY, "$TABLE_NAME/#", FAVORITE_ID)
-
-
         }
     }
 
@@ -41,7 +39,6 @@ class GithubUserProvider : ContentProvider() {
         return when(sUriMatcher.match(uri)){
             FAVORITE -> favoriteHelper.queryAll()
             FAVORITE_ID -> favoriteHelper.queryById(uri.lastPathSegment.toString())
-//            FAVORITE_ID -> favoriteHelper.queryById
             else -> null
         }
     }

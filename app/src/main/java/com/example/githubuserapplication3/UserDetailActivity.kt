@@ -1,7 +1,6 @@
 package com.example.githubuserapplication3
 import android.content.ContentValues
 import android.database.Cursor
-import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -10,10 +9,10 @@ import android.widget.*
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
-import com.example.githubuserapplication3.Adapter.ViewPagerAdapter
-import com.example.githubuserapplication3.Data.ApiService
-import com.example.githubuserapplication3.Data.DataRetrofit.getData
-import com.example.githubuserapplication3.Model.UserItem
+import com.example.githubuserapplication3.adapter.ViewPagerAdapter
+import com.example.githubuserapplication3.data.ApiService
+import com.example.githubuserapplication3.data.DataRetrofit.getData
+import com.example.githubuserapplication3.model.UserItem
 import com.example.githubuserapplication3.databinding.ActivityUserDetailBinding
 import com.example.githubuserapplication3.db.DatabaseContract
 import com.example.githubuserapplication3.db.DatabaseContract.FavoriteColumns.Companion.CONTENT_URI
@@ -51,7 +50,7 @@ class UserDetailActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         //Action bar title
-        supportActionBar?.title = getString(R.string.app_name)
+        supportActionBar?.title = getString(R.string.user_detail)
 
         favoriteHelper = FavoriteHelper.getInstance(applicationContext)
         favoriteHelper.open()
@@ -131,17 +130,12 @@ class UserDetailActivity : AppCompatActivity() {
             override fun onFailure(call: Call<UserItem?>, t: Throwable) {
                 val handler = Handler()
                 handler.postDelayed(Runnable {
-                    Toast.makeText(this@UserDetailActivity, "Check Internet", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@UserDetailActivity, resources.getString(R.string.check_internet), Toast.LENGTH_SHORT).show()
                     showLoading(false)
                 }, 2000)
             }
 
         })
-    }
-
-    private fun requestDataFavorite(id: String){
-        showLoading(false)
-        binding.name.text = id
     }
 
     fun showLoading(state: Boolean){

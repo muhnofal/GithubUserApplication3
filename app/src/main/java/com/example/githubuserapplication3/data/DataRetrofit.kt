@@ -1,4 +1,4 @@
-package com.example.githubuserapplication3.Data
+package com.example.githubuserapplication3.data
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

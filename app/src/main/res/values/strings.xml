@@ -13,25 +13,31 @@
     <string name="repository">Repository</string>
     <string name="follower">Follower</string>
     <string name="following">Following</string>
-    <string name="change_language_setting" translatable="false">change language setting</string>
-    <string name="search_hint" translatable="false">Search Username</string>
-    <string name="search" translatable="false">search</string>
-
-    <string name="check_follower" translatable="false"> Follower is empty </string>
-    <string name="check_following" translatable="false"> Following is empty </string>
-    <string name="check_search" translatable="false"> Data is empty </string>
-    <string name="check_internet" translatable="false"> Check internet connection</string>
-    <string name="zeroValue" translatable="false">0</string>
-    <string name="favorite" translatable="false">favorite</string>
-    <string name="container" translatable="false">container</string>
-    <string name="delete_favorite" translatable="false">Delete Favorite</string>
-    <string name="no_data" translatable="false">User does not exist</string>
-    <string name="to_search_user" translatable="false">\u0020 to search user</string>
-    <string name="click" translatable="false">click \u0020</string>
-    <string name="set_reminder" translatable="false">set reminder</string>
-    <string name="set_reminder_activity" translatable="false">Set Reminder</string>
-    <string name="cancel_reminder" translatable="false">Cancel Reminder</string>
-    <string name="reminder_note" translatable="false">when you set the reminder, you will get notification \nat 9:00 AM</string>
+    <string name="change_language_setting">change language setting</string>
+    <string name="search_hint">Search Username</string>
+    <string name="search">search</string>
+    <string name="check_follower"> Follower is empty </string>
+    <string name="check_following"> Following is empty </string>
+    <string name="check_search"> Data is empty </string>
+    <string name="check_internet"> Check internet connection</string>
+    <string name="zeroValue">0</string>
+    <string name="favorite">favorite</string>
+    <string name="container">container</string>
+    <string name="delete_favorite">Delete Favorite</string>
+    <string name="no_data">User does not exist</string>
+    <string name="to_search_user">\u0020 to search user</string>
+    <string name="click">click \u0020</string>
+    <string name="set_reminder">set reminder</string>
+    <string name="set_reminder_activity">Set Reminder</string>
+    <string name="cancel_reminder">Cancel Reminder</string>
+    <string name="reminder_note">when you set the reminder, you will get notification \nat 9:00 AM</string>
     <string name="not_have_favorite_user">not have favorite user</string>
+    <string name="reminder_on">Reminder ON</string>
+    <string name="reminder_off">Reminder OFF</string>
+    <string name="succes_delete">Success to delete</string>
+    <string name="hello_notif">Hello, how are you</string>
+    <string name="user_detail">User Detail</string>
+    <string name="no_follower">no follower</string>
+    <string name="no_following">no following</string>
 
 </resources>

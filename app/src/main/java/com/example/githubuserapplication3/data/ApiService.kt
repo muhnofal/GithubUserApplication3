@@ -1,9 +1,9 @@
-package com.example.githubuserapplication3.Data
+package com.example.githubuserapplication3.data
 
-import com.example.githubuserapplication3.Model.FollowerItem
-import com.example.githubuserapplication3.Model.FollowingItem
-import com.example.githubuserapplication3.Model.User
-import com.example.githubuserapplication3.Model.UserItem
+import com.example.githubuserapplication3.model.FollowerItem
+import com.example.githubuserapplication3.model.FollowingItem
+import com.example.githubuserapplication3.model.User
+import com.example.githubuserapplication3.model.UserItem
 import retrofit2.Call
 import retrofit2.http.*
 

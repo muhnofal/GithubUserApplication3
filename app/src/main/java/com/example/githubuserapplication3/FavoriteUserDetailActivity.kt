@@ -7,14 +7,12 @@ import android.os.Handler
 import android.view.View
 import android.widget.Toast
 import com.bumptech.glide.Glide
-import com.example.githubuserapplication3.Data.ApiService
-import com.example.githubuserapplication3.Data.DataRetrofit
-import com.example.githubuserapplication3.Model.Favorite
-import com.example.githubuserapplication3.Model.UserItem
+import com.example.githubuserapplication3.data.ApiService
+import com.example.githubuserapplication3.data.DataRetrofit
+import com.example.githubuserapplication3.model.Favorite
+import com.example.githubuserapplication3.model.UserItem
 import com.example.githubuserapplication3.databinding.ActivityFavoriteUserDetailBinding
 import com.example.githubuserapplication3.db.DatabaseContract.FavoriteColumns.Companion.CONTENT_URI
-import com.example.githubuserapplication3.db.FavoriteHelper
-import com.example.githubuserapplication3.helper.MappingHelper
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -56,7 +54,7 @@ class FavoriteUserDetailActivity : AppCompatActivity(){
         binding.deleteButton.setOnClickListener{
             uriWithId = Uri.parse(CONTENT_URI.toString() + "/" + favorite?.id)
             contentResolver.delete(uriWithId, null, null)
-            Toast.makeText(this, "Success to delete", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, resources.getString(R.string.succes_delete), Toast.LENGTH_SHORT).show()
             finish()
         }
     }
@@ -96,7 +94,7 @@ class FavoriteUserDetailActivity : AppCompatActivity(){
                 override fun onFailure(call: Call<UserItem?>, t: Throwable) {
                     val handler = Handler()
                     handler.postDelayed(Runnable {
-                        Toast.makeText(this@FavoriteUserDetailActivity, "Check Internet", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@FavoriteUserDetailActivity, resources.getString(R.string.check_internet), Toast.LENGTH_SHORT).show()
                         showLoading(false)
                     }, 2000)
                 }

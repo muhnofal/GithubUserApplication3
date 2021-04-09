@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".Fragment.FollowerFragment">
+    tools:context=".fragment.FollowerFragment">
 
     <ProgressBar
         android:id="@+id/followerProgress"
@@ -35,7 +35,7 @@
        <TextView
            android:layout_width="match_parent"
            android:layout_height="match_parent"
-           android:text="no follower"
+           android:text="@string/no_follower"
            style="@style/text_black_blue_25sp"/>
 
    </LinearLayout>

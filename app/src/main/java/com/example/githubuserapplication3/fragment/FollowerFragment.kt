@@ -1,4 +1,4 @@
-package com.example.githubuserapplication3.Fragment
+package com.example.githubuserapplication3.fragment
 
 import android.os.Bundle
 import android.os.Handler
@@ -8,10 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.githubuserapplication3.Data.ApiService
-import com.example.githubuserapplication3.Data.DataRetrofit.getData
-import com.example.githubuserapplication3.Adapter.FollowerListAdapter
-import com.example.githubuserapplication3.Model.FollowerItem
+import com.example.githubuserapplication3.data.ApiService
+import com.example.githubuserapplication3.data.DataRetrofit.getData
+import com.example.githubuserapplication3.adapter.FollowerListAdapter
+import com.example.githubuserapplication3.model.FollowerItem
 import com.example.githubuserapplication3.R
 import com.example.githubuserapplication3.databinding.FragmentFollowerBinding
 import retrofit2.Call
@@ -85,7 +85,6 @@ class FollowerFragment : Fragment() {
                     noFollower(false)
 
                     if (followerList.isEmpty()) {
-//                        Toast.makeText(requireContext(), resources.getString(R.string.check_follower), Toast.LENGTH_SHORT).show()
                         noFollower(true)
                     }
 

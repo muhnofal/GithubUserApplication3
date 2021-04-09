@@ -1,14 +1,14 @@
-package com.example.githubuserapplication3.Adapter
+package com.example.githubuserapplication3.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.example.githubuserapplication3.Model.FollowingItem
+import com.example.githubuserapplication3.model.FollowingItem
 import com.example.githubuserapplication3.databinding.ItemRowFollowingBinding
 
-class FollowingListAdapter(val followingList: ArrayList<FollowingItem>): RecyclerView.Adapter<FollowingListAdapter.ViewHolder>() {
+class FollowingListAdapter(private val followingList: ArrayList<FollowingItem>): RecyclerView.Adapter<FollowingListAdapter.ViewHolder>() {
 
 
     class ViewHolder(val binding: ItemRowFollowingBinding) : RecyclerView.ViewHolder(binding.root)

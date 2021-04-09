@@ -12,17 +12,17 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.githubuserapplication3.Adapter.UserListAdapter
-import com.example.githubuserapplication3.Data.ApiService
-import com.example.githubuserapplication3.Model.User
-import com.example.githubuserapplication3.Model.UserItem
+import com.example.githubuserapplication3.adapter.UserListAdapter
+import com.example.githubuserapplication3.data.ApiService
+import com.example.githubuserapplication3.model.User
+import com.example.githubuserapplication3.model.UserItem
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
 import kotlin.collections.ArrayList
 import androidx.appcompat.widget.SearchView
-import com.example.githubuserapplication3.Data.DataRetrofit
+import com.example.githubuserapplication3.data.DataRetrofit
 import com.example.githubuserapplication3.databinding.ActivityMainBinding
 
 
@@ -90,7 +90,7 @@ class MainActivity : AppCompatActivity() {
             val mIntent = Intent(this, FavoriteUserActivity::class.java)
             startActivity(mIntent)
         }
-
+        //reminder activity
         if (item.itemId == R.id.action_set_alarm){
             val mIntent = Intent(this, ReminderActivity::class.java)
             startActivity(mIntent)
