@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.consumeapp">
+
+    <uses-permission android:name="com.example.githubuserapplication3.READ_DATABASE" />
+    <uses-permission android:name="com.example.githubuserapplication3.WRITE_DATABASE" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <queries>
+        <provider
+            android:authorities="com.example.githubuserapplication3"
+            android:exported="false" />
+    </queries>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.GithubUserApplication2">
+        <activity android:name=".MainActivity">
+
+        </activity>
+        <activity android:name=".FavoriteUserActivity" />
+        <activity android:name=".FavoriteUserDetailActivity" />
+        <activity android:name=".ReminderActivity" />
+        <activity android:name=".SplashScreenActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".UserDetailActivity" />
+    </application>
+
+</manifest>
