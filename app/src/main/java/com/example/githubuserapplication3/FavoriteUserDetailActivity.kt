@@ -4,6 +4,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.view.View
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.example.githubuserapplication3.Data.ApiService
@@ -45,6 +46,9 @@ class FavoriteUserDetailActivity : AppCompatActivity(){
         }else{
             favorite = Favorite()
         }
+
+        showLoading(true)
+
         //request data
         requestData(username.orEmpty())
 
@@ -62,6 +66,9 @@ class FavoriteUserDetailActivity : AppCompatActivity(){
         apiService?.getUserDetail(username)
             ?.enqueue(object : Callback<UserItem?> {
                 override fun onResponse(call: Call<UserItem?>, response: Response<UserItem?>) {
+
+                    showLoading(false)
+
                     val name = response.body()?.name
                     val username = response.body()?.username
                     val company = response.body()?.company
@@ -90,10 +97,54 @@ class FavoriteUserDetailActivity : AppCompatActivity(){
                     val handler = Handler()
                     handler.postDelayed(Runnable {
                         Toast.makeText(this@FavoriteUserDetailActivity, "Check Internet", Toast.LENGTH_SHORT).show()
-//                        showLogin(false)
+                        showLoading(false)
                     }, 2000)
                 }
             })
+    }
+
+    fun showLoading(state: Boolean){
+        if (state){
+            binding.let {
+                it.progressbar.visibility = View.VISIBLE
+                it.deleteButton.visibility = View.GONE
+                it.avatar.visibility = View.GONE
+                it.blog.visibility = View.GONE
+                it.company.visibility = View.GONE
+                it.follower.visibility = View.GONE
+                it.following.visibility = View.GONE
+                it.location.visibility = View.GONE
+                it.name.visibility = View.GONE
+                it.repository.visibility = View.GONE
+                it.textView10.visibility = View.GONE
+                it.textView14.visibility = View.GONE
+                it.textView16.visibility = View.GONE
+                it.textView3.visibility = View.GONE
+                it.textView6.visibility = View.GONE
+                it.textView8.visibility = View.GONE
+                it.username.visibility = View.GONE
+            }
+        }else{
+            binding.let {
+                it.progressbar.visibility = View.GONE
+                it.deleteButton.visibility = View.VISIBLE
+                it.avatar.visibility = View.VISIBLE
+                it.blog.visibility = View.VISIBLE
+                it.company.visibility = View.VISIBLE
+                it.follower.visibility = View.VISIBLE
+                it.following.visibility = View.VISIBLE
+                it.location.visibility = View.VISIBLE
+                it.name.visibility = View.VISIBLE
+                it.repository.visibility = View.VISIBLE
+                it.textView10.visibility = View.VISIBLE
+                it.textView14.visibility = View.VISIBLE
+                it.textView16.visibility = View.VISIBLE
+                it.textView3.visibility = View.VISIBLE
+                it.textView6.visibility = View.VISIBLE
+                it.textView8.visibility = View.VISIBLE
+                it.username.visibility = View.VISIBLE
+            }
+        }
     }
 
 }

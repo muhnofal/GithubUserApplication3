@@ -18,4 +18,26 @@
         android:layout_height="match_parent"
         tools:listitem="@layout/item_row_following"/>
 
+    <LinearLayout
+        android:id="@+id/no_follower"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_baseline_person_24"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="no following"
+            style="@style/text_black_blue_25sp"/>
+
+    </LinearLayout>
+
 </FrameLayout>

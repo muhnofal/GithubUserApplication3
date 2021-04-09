@@ -27,6 +27,11 @@
     <string name="delete_favorite" translatable="false">Delete Favorite</string>
     <string name="no_data" translatable="false">User does not exist</string>
     <string name="to_search_user" translatable="false">\u0020 to search user</string>
-    <string name="click" translatable="false">Click \u0020</string>
+    <string name="click" translatable="false">click \u0020</string>
+    <string name="set_reminder" translatable="false">set reminder</string>
+    <string name="set_reminder_activity" translatable="false">Set Reminder</string>
+    <string name="cancel_reminder" translatable="false">Cancel Reminder</string>
+    <string name="reminder_note" translatable="false">when you set the reminder, you will get notification \nat 9:00 AM</string>
+    <string name="not_have_favorite_user">not have favorite user</string>
 
 </resources>

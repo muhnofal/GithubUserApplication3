@@ -91,6 +91,11 @@ class MainActivity : AppCompatActivity() {
             startActivity(mIntent)
         }
 
+        if (item.itemId == R.id.action_set_alarm){
+            val mIntent = Intent(this, ReminderActivity::class.java)
+            startActivity(mIntent)
+        }
+
         return super.onOptionsItemSelected(item)
     }
 
@@ -152,8 +157,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun showClickSearch(state: Boolean){
         if(state){
+            binding.searchImage.visibility = View.VISIBLE
             binding.clickSearchIcon.visibility = View.VISIBLE
         }else{
+            binding.searchImage.visibility = View.GONE
             binding.clickSearchIcon.visibility = View.GONE
         }
     }

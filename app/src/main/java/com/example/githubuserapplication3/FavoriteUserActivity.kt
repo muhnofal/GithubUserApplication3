@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.HandlerThread
+import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.githubuserapplication3.Adapter.FavoriteListAdapter
@@ -60,10 +61,11 @@ class FavoriteUserActivity : AppCompatActivity() {
             val favorite = defferedFavorites.await()
             if(favorite.size > 0){
                 adapter.listFavorites = favorite
+                showFavoriteData(false)
             }else{
                 adapter.listFavorites = ArrayList()
                 adapter.notifyDataSetChanged()
-                Toast.makeText(this@FavoriteUserActivity, "No Data", Toast.LENGTH_SHORT).show()
+                showFavoriteData(true)
             }
         }
 
@@ -77,6 +79,16 @@ class FavoriteUserActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return super.onSupportNavigateUp()
+    }
+
+    fun showFavoriteData(state: Boolean){
+        if(state){
+            binding.favoriteData.visibility = View.VISIBLE
+            binding.favoriteRecycler.visibility = View.GONE
+        }else{
+            binding.favoriteData.visibility = View.GONE
+            binding.favoriteRecycler.visibility = View.VISIBLE
+        }
     }
 
 }

@@ -79,9 +79,10 @@ class FollowingFragment : Fragment() {
                     val adapter = FollowingListAdapter(followingItem)
                     binding.followingRecycler.adapter = adapter
                     binding.followingRecycler.adapter?.notifyDataSetChanged()
+                    noFollower(false)
 
                     if (followingItem.isEmpty()) {
-                        Toast.makeText(requireContext(), resources.getString(R.string.check_following), Toast.LENGTH_SHORT).show()
+                        noFollower(true)
                     }
                 }
 
@@ -103,7 +104,14 @@ class FollowingFragment : Fragment() {
             binding.followingProgress.visibility = View.GONE
             binding.followingRecycler.visibility = View.VISIBLE
         }
+    }
 
+    fun noFollower(state: Boolean){
+        if (state){
+            binding.noFollower.visibility = View.VISIBLE
+        }else{
+            binding.noFollower.visibility = View.INVISIBLE
+        }
     }
 
 }
