@@ -14,9 +14,7 @@
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <queries>
-        <provider
-            android:authorities="com.example.githubuserapplication3"
-            android:exported="false" />
+        <package android:name="com.example.githubuserapplication3" />
     </queries>
 
     <application
@@ -46,7 +44,7 @@
         <activity android:name=".MainActivity" />
 
         <provider
-            android:name=".GithubUserProvider"
+            android:name=".provider.GithubUserProvider"
             android:authorities="com.example.githubuserapplication3"
             android:enabled="true"
             android:exported="true"

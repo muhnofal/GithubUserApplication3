@@ -1,4 +1,4 @@
-package com.example.githubuserapplication3
+package com.example.githubuserapplication3.provider
 
 import android.content.ContentProvider
 import android.content.ContentValues
