@@ -1,30 +1,30 @@
 package com.example.githubuserapplication3
 
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.githubuserapplication3.data.ApiService
 import com.example.githubuserapplication3.data.DataRetrofit
-import com.example.githubuserapplication3.model.Favorite
-import com.example.githubuserapplication3.model.UserItem
 import com.example.githubuserapplication3.databinding.ActivityFavoriteUserDetailBinding
 import com.example.githubuserapplication3.db.DatabaseContract.FavoriteColumns.Companion.CONTENT_URI
+import com.example.githubuserapplication3.model.Favorite
+import com.example.githubuserapplication3.model.UserItem
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class FavoriteUserDetailActivity : AppCompatActivity(){
+class FavoriteUserDetailActivity : AppCompatActivity() {
 
     var favorite: Favorite? = null
     private lateinit var binding: ActivityFavoriteUserDetailBinding
     private var position: Int = 0
     private lateinit var uriWithId: Uri
 
-    companion object{
+    companion object {
         const val EXTRA_FAVORITE = "extra_favorite"
         const val EXTRA_POSITION = "extra_position"
     }
@@ -39,9 +39,9 @@ class FavoriteUserDetailActivity : AppCompatActivity(){
         //get username from FavoriteUserActivity
         favorite = intent.getParcelableExtra(EXTRA_FAVORITE)
         val username = favorite?.username
-        if(favorite != null){
+        if (favorite != null) {
             position = intent.getIntExtra(EXTRA_POSITION, 0)
-        }else{
+        } else {
             favorite = Favorite()
         }
 
@@ -51,7 +51,7 @@ class FavoriteUserDetailActivity : AppCompatActivity(){
         requestData(username.orEmpty())
 
         //delete data
-        binding.deleteButton.setOnClickListener{
+        binding.deleteButton.setOnClickListener {
             uriWithId = Uri.parse(CONTENT_URI.toString() + "/" + favorite?.id)
             contentResolver.delete(uriWithId, null, null)
             Toast.makeText(this, resources.getString(R.string.succes_delete), Toast.LENGTH_SHORT).show()
@@ -62,47 +62,47 @@ class FavoriteUserDetailActivity : AppCompatActivity(){
     private fun requestData(username: String) {
         val apiService = DataRetrofit.getData()?.create(ApiService::class.java)
         apiService?.getUserDetail(username)
-            ?.enqueue(object : Callback<UserItem?> {
-                override fun onResponse(call: Call<UserItem?>, response: Response<UserItem?>) {
+                ?.enqueue(object : Callback<UserItem?> {
+                    override fun onResponse(call: Call<UserItem?>, response: Response<UserItem?>) {
 
-                    showLoading(false)
+                        showLoading(false)
 
-                    val name = response.body()?.name
-                    val username = response.body()?.username
-                    val company = response.body()?.company
-                    val blog = response.body()?.blog
-                    val location = response.body()?.location
-                    val avatar = response.body()?.image
-                    val repository = response.body()?.repos
-                    val follower = response.body()?.followers
-                    val following = response.body()?.followers
+                        val name = response.body()?.name
+                        val username = response.body()?.username
+                        val company = response.body()?.company
+                        val blog = response.body()?.blog
+                        val location = response.body()?.location
+                        val avatar = response.body()?.image
+                        val repository = response.body()?.repos
+                        val follower = response.body()?.followers
+                        val following = response.body()?.followers
 
-                    binding.let {
-                        Glide.with(this@FavoriteUserDetailActivity).load(avatar).into(it.avatar)
-                        it.name.text = name
-                        it.username.text = username
-                        it.company.text = company
-                        it.blog.text = blog
-                        it.location.text = location
-                        it.repository.text = repository.toString()
-                        it.follower.text = follower.toString()
-                        it.following.text = following.toString()
+                        binding.let {
+                            Glide.with(this@FavoriteUserDetailActivity).load(avatar).into(it.avatar)
+                            it.name.text = name
+                            it.username.text = username
+                            it.company.text = company
+                            it.blog.text = blog
+                            it.location.text = location
+                            it.repository.text = repository.toString()
+                            it.follower.text = follower.toString()
+                            it.following.text = following.toString()
+                        }
+
                     }
 
-                }
-
-                override fun onFailure(call: Call<UserItem?>, t: Throwable) {
-                    val handler = Handler()
-                    handler.postDelayed(Runnable {
-                        Toast.makeText(this@FavoriteUserDetailActivity, resources.getString(R.string.check_internet), Toast.LENGTH_SHORT).show()
-                        showLoading(false)
-                    }, 2000)
-                }
-            })
+                    override fun onFailure(call: Call<UserItem?>, t: Throwable) {
+                        val handler = Handler()
+                        handler.postDelayed(Runnable {
+                            Toast.makeText(this@FavoriteUserDetailActivity, resources.getString(R.string.check_internet), Toast.LENGTH_SHORT).show()
+                            showLoading(false)
+                        }, 2000)
+                    }
+                })
     }
 
-    fun showLoading(state: Boolean){
-        if (state){
+    fun showLoading(state: Boolean) {
+        if (state) {
             binding.let {
                 it.progressbar.visibility = View.VISIBLE
                 it.deleteButton.visibility = View.GONE
@@ -122,7 +122,7 @@ class FavoriteUserDetailActivity : AppCompatActivity(){
                 it.textView8.visibility = View.GONE
                 it.username.visibility = View.GONE
             }
-        }else{
+        } else {
             binding.let {
                 it.progressbar.visibility = View.GONE
                 it.deleteButton.visibility = View.VISIBLE

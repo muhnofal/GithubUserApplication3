@@ -1,13 +1,14 @@
 package com.example.githubuserapplication3.db
+
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import com.example.githubuserapplication3.db.DatabaseContract.FavoriteColumns.Companion.TABLE_NAME
 
 
-internal class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
+internal class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
-    companion object{
+    companion object {
         private const val DATABASE_NAME = "db_favorite.db"
         private const val DATABASE_VERSION = 1
 

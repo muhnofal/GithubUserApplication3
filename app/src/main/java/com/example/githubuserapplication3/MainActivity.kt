@@ -11,9 +11,12 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.githubuserapplication3.adapter.UserListAdapter
 import com.example.githubuserapplication3.data.ApiService
+import com.example.githubuserapplication3.data.DataRetrofit
+import com.example.githubuserapplication3.databinding.ActivityMainBinding
 import com.example.githubuserapplication3.model.User
 import com.example.githubuserapplication3.model.UserItem
 import retrofit2.Call
@@ -21,9 +24,6 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
 import kotlin.collections.ArrayList
-import androidx.appcompat.widget.SearchView
-import com.example.githubuserapplication3.data.DataRetrofit
-import com.example.githubuserapplication3.databinding.ActivityMainBinding
 
 
 class MainActivity : AppCompatActivity() {
@@ -81,17 +81,17 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         //setting localization
-        if (item.itemId == R.id.action_change_language_setting){
+        if (item.itemId == R.id.action_change_language_setting) {
             val mIntent = Intent(Settings.ACTION_LOCALE_SETTINGS)
             startActivity(mIntent)
         }
 
-        if (item.itemId == R.id.favorite){
+        if (item.itemId == R.id.favorite) {
             val mIntent = Intent(this, FavoriteUserActivity::class.java)
             startActivity(mIntent)
         }
         //reminder activity
-        if (item.itemId == R.id.action_set_alarm){
+        if (item.itemId == R.id.action_set_alarm) {
             val mIntent = Intent(this, ReminderActivity::class.java)
             startActivity(mIntent)
         }
@@ -99,7 +99,7 @@ class MainActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    fun setData(username: String){
+    fun setData(username: String) {
         val listItem = ArrayList<UserItem>()
         val apiService = DataRetrofit.getData()?.create(ApiService::class.java)
         apiService?.getUser(username)
@@ -137,29 +137,29 @@ class MainActivity : AppCompatActivity() {
                 })
     }
 
-    private fun showLoading(state: Boolean){
-        if(state){
+    private fun showLoading(state: Boolean) {
+        if (state) {
             binding.activityMainProgressBar.visibility = View.VISIBLE
             binding.recycler.visibility = View.GONE
-        }else{
+        } else {
             binding.activityMainProgressBar.visibility = View.GONE
             binding.recycler.visibility = View.VISIBLE
         }
     }
 
-    private fun showNoData(state: Boolean){
-        if(state){
+    private fun showNoData(state: Boolean) {
+        if (state) {
             binding.noData.visibility = View.VISIBLE
-        }else{
+        } else {
             binding.noData.visibility = View.GONE
         }
     }
 
-    private fun showClickSearch(state: Boolean){
-        if(state){
+    private fun showClickSearch(state: Boolean) {
+        if (state) {
             binding.searchImage.visibility = View.VISIBLE
             binding.clickSearchIcon.visibility = View.VISIBLE
-        }else{
+        } else {
             binding.searchImage.visibility = View.GONE
             binding.clickSearchIcon.visibility = View.GONE
         }

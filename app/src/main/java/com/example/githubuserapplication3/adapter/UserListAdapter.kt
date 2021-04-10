@@ -9,11 +9,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.githubuserapplication3.CustomOnClickListener
-import com.example.githubuserapplication3.model.UserItem
 import com.example.githubuserapplication3.UserDetailActivity
 import com.example.githubuserapplication3.databinding.ItemRowUserBinding
+import com.example.githubuserapplication3.model.UserItem
 
-class UserListAdapter(private val activity: Activity): RecyclerView.Adapter<UserListAdapter.viewHolder>() {
+class UserListAdapter(private val activity: Activity) : RecyclerView.Adapter<UserListAdapter.viewHolder>() {
 
     var list = ArrayList<UserItem>()
 
@@ -28,12 +28,12 @@ class UserListAdapter(private val activity: Activity): RecyclerView.Adapter<User
         val user = list[position]
 
         Glide.with(holder.itemView.context)
-            .load(user.image)
-            .apply(RequestOptions().override(55,55))
-            .into(holder.binding.itemUserAvatar)
+                .load(user.image)
+                .apply(RequestOptions().override(55, 55))
+                .into(holder.binding.itemUserAvatar)
         holder.binding.userUsername.text = user.username
 
-        holder.itemView.setOnClickListener(CustomOnClickListener(position, object : CustomOnClickListener.OnItemClickCallback{
+        holder.itemView.setOnClickListener(CustomOnClickListener(position, object : CustomOnClickListener.OnItemClickCallback {
             override fun onItemClicked(view: View, position: Int) {
                 val intent = Intent(activity, UserDetailActivity::class.java)
                 intent.putExtra(UserDetailActivity.EXTRA_USER, user)
@@ -47,7 +47,6 @@ class UserListAdapter(private val activity: Activity): RecyclerView.Adapter<User
     override fun getItemCount(): Int {
         return list.size
     }
-
 
 
 }

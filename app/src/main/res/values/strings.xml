@@ -9,16 +9,12 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="tab_text_1">Follower</string>
     <string name="tab_text_2">Following</string>
-    <string name="_100">100</string>
     <string name="repository">Repository</string>
     <string name="follower">Follower</string>
     <string name="following">Following</string>
     <string name="change_language_setting">change language setting</string>
     <string name="search_hint">Search Username</string>
     <string name="search">search</string>
-    <string name="check_follower"> Follower is empty </string>
-    <string name="check_following"> Following is empty </string>
-    <string name="check_search"> Data is empty </string>
     <string name="check_internet"> Check internet connection</string>
     <string name="zeroValue">0</string>
     <string name="favorite">favorite</string>
@@ -29,7 +25,6 @@
     <string name="click">click \u0020</string>
     <string name="set_reminder">set reminder</string>
     <string name="set_reminder_activity">Set Reminder</string>
-    <string name="cancel_reminder">Cancel Reminder</string>
     <string name="reminder_note">when you set the reminder, you will get notification \nat 9:00 AM</string>
     <string name="not_have_favorite_user">not have favorite user</string>
     <string name="reminder_on">Reminder ON</string>

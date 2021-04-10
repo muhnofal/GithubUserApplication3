@@ -5,12 +5,15 @@ import com.example.githubuserapplication3.model.FollowingItem
 import com.example.githubuserapplication3.model.User
 import com.example.githubuserapplication3.model.UserItem
 import retrofit2.Call
-import retrofit2.http.*
+import retrofit2.http.GET
+import retrofit2.http.Headers
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface ApiService {
 
     @GET("/search/users?q=")
-    @Headers("Authorization: token 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")
+    @Headers("Authorization: token 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")
     open fun getUser(@Query("q") username: String): Call<User>
 
     @GET("/users/{username}")

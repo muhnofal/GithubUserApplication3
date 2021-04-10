@@ -1,11 +1,11 @@
 package com.example.githubuserapplication3
 
 import android.database.ContentObserver
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.HandlerThread
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.githubuserapplication3.adapter.FavoriteListAdapter
 import com.example.githubuserapplication3.databinding.ActivityFavoriteUserBinding
@@ -40,7 +40,7 @@ class FavoriteUserActivity : AppCompatActivity() {
         handlerThread.start()
         val handler = Handler(handlerThread.looper)
 
-        val myObserver = object : ContentObserver(handler){
+        val myObserver = object : ContentObserver(handler) {
             override fun onChange(selfChange: Boolean) {
                 getDatabase()
             }
@@ -50,18 +50,18 @@ class FavoriteUserActivity : AppCompatActivity() {
 
     }
 
-    private fun getDatabase(){
+    private fun getDatabase() {
 
-        GlobalScope.launch(Dispatchers.Main){
-            val defferedFavorites = async(Dispatchers.IO){
+        GlobalScope.launch(Dispatchers.Main) {
+            val defferedFavorites = async(Dispatchers.IO) {
                 val cursor = contentResolver.query(CONTENT_URI, null, null, null, null)
                 MappingHelper.mapCursorToArrayList(cursor)
             }
             val favorite = defferedFavorites.await()
-            if(favorite.size > 0){
+            if (favorite.size > 0) {
                 adapter.listFavorites = favorite
                 showFavoriteData(false)
-            }else{
+            } else {
                 adapter.listFavorites = ArrayList()
                 adapter.notifyDataSetChanged()
                 showFavoriteData(true)
@@ -80,11 +80,11 @@ class FavoriteUserActivity : AppCompatActivity() {
         return super.onSupportNavigateUp()
     }
 
-    private fun showFavoriteData(state: Boolean){
-        if(state){
+    private fun showFavoriteData(state: Boolean) {
+        if (state) {
             binding.favoriteData.visibility = View.VISIBLE
             binding.favoriteRecycler.visibility = View.GONE
-        }else{
+        } else {
             binding.favoriteData.visibility = View.GONE
             binding.favoriteRecycler.visibility = View.VISIBLE
         }

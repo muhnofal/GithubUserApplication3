@@ -25,14 +25,14 @@
             android:id="@+id/topContainer"
             android:layout_width="match_parent"
             android:layout_height="340dp"
+            android:contentDescription="@string/container"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/black_blue_container"
-            android:contentDescription="@string/container" />
+            app:srcCompat="@drawable/black_blue_container" />
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/avatar"
@@ -220,15 +220,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="true"
+            android:contentDescription="@string/favorite"
+            android:focusable="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.954"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.939"
-            app:srcCompat="@drawable/ic_baseline_favorite_border_24"
-            android:focusable="true"
-            android:contentDescription="@string/favorite" />
+            app:srcCompat="@drawable/ic_baseline_favorite_border_24" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"

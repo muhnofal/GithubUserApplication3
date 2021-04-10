@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:src="@drawable/search_image"
-        android:visibility="visible"/>
+        android:visibility="visible" />
 
     <LinearLayout
         android:id="@+id/click_search_icon"
@@ -29,7 +28,7 @@
             style="@style/text_black_blue_25sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/click"/>
+            android:text="@string/click" />
 
         <ImageView
             android:layout_gravity="center"
@@ -42,7 +41,7 @@
             style="@style/text_black_blue_25sp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/to_search_user"/>
+            android:text="@string/to_search_user" />
 
     </LinearLayout>
 
@@ -57,7 +56,7 @@
         <ImageView
             android:layout_width="300dp"
             android:layout_height="300dp"
-            android:src="@drawable/octocat"/>
+            android:src="@drawable/octocat" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -67,7 +66,7 @@
             android:textAlignment="center"
             android:textColor="@color/black_blue"
             android:textSize="25sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
     </LinearLayout>
 

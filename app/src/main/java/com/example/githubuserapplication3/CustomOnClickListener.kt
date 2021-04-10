@@ -2,7 +2,7 @@ package com.example.githubuserapplication3
 
 import android.view.View
 
-class CustomOnClickListener(private val position: Int, private val onItemClickCallback: OnItemClickCallback): View.OnClickListener {
+class CustomOnClickListener(private val position: Int, private val onItemClickCallback: OnItemClickCallback) : View.OnClickListener {
 
     override fun onClick(view: View) {
         onItemClickCallback.onItemClicked(view, position)

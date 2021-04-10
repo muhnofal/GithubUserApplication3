@@ -13,7 +13,7 @@ import com.example.githubuserapplication3.db.FavoriteHelper
 
 class GithubUserProvider : ContentProvider() {
 
-    companion object{
+    companion object {
         private const val FAVORITE = 1
         private const val FAVORITE_ID = 2
         private val sUriMatcher = UriMatcher(UriMatcher.NO_MATCH)
@@ -36,7 +36,7 @@ class GithubUserProvider : ContentProvider() {
 
     override fun query(uri: Uri, projection: Array<String>?, selection: String?,
                        selectionArgs: Array<String>?, sortOrder: String?): Cursor? {
-        return when(sUriMatcher.match(uri)){
+        return when (sUriMatcher.match(uri)) {
             FAVORITE -> favoriteHelper.queryAll()
             FAVORITE_ID -> favoriteHelper.queryById(uri.lastPathSegment.toString())
             else -> null
@@ -49,7 +49,7 @@ class GithubUserProvider : ContentProvider() {
     }
 
     override fun insert(uri: Uri, values: ContentValues?): Uri? {
-        val added: Long = when (FAVORITE){
+        val added: Long = when (FAVORITE) {
             sUriMatcher.match(uri) -> favoriteHelper.insert(values)
             else -> 0
         }
@@ -61,7 +61,7 @@ class GithubUserProvider : ContentProvider() {
     }
 
     override fun delete(uri: Uri, selection: String?, selectionArgs: Array<String>?): Int {
-        val deleted: Int = when (FAVORITE_ID){
+        val deleted: Int = when (FAVORITE_ID) {
             sUriMatcher.match(uri) -> favoriteHelper.deleteById(uri.lastPathSegment.toString())
             else -> 0
         }
@@ -73,7 +73,7 @@ class GithubUserProvider : ContentProvider() {
 
     override fun update(uri: Uri, values: ContentValues?, selection: String?,
                         selectionArgs: Array<String>?): Int {
-        val updated: Int = when (FAVORITE_ID){
+        val updated: Int = when (FAVORITE_ID) {
             sUriMatcher.match(uri) -> favoriteHelper.update(uri.lastPathSegment.toString(), values)
             else -> 0
         }

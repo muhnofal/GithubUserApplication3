@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,7 +11,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/github_mark_light_120px_plus"/>
+        android:src="@drawable/github_mark_light_120px_plus" />
 
     <TextView
         android:layout_marginTop="20dp"
@@ -20,6 +19,6 @@
         android:layout_height="wrap_content"
         android:text="@string/app_name"
         style="@style/text_white_15sp"
-        android:textSize="25sp"/>
+        android:textSize="25sp" />
 
 </LinearLayout>

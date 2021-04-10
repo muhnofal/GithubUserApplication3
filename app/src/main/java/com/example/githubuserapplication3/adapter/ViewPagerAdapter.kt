@@ -15,8 +15,8 @@ class ViewPagerAdapter(activity: AppCompatActivity) : FragmentStateAdapter(activ
 
         var fragment: Fragment? = null
 
-        when(position){
-            0 -> fragment =  FollowerFragment.newInstance(id)
+        when (position) {
+            0 -> fragment = FollowerFragment.newInstance(id)
             1 -> fragment = FollowingFragment.newInstance(id)
         }
 

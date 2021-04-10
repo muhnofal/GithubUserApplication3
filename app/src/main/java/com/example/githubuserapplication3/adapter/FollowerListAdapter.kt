@@ -5,16 +5,16 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.example.githubuserapplication3.databinding.ItemRowUserBinding
 import com.example.githubuserapplication3.model.FollowerItem
-import com.example.githubuserapplication3.databinding.ItemRowFollowerBinding
 
 class FollowerListAdapter(private var followerList: ArrayList<FollowerItem>) : RecyclerView.Adapter<FollowerListAdapter.ViewHolder>() {
 
-    class ViewHolder(val binding: ItemRowFollowerBinding) : RecyclerView.ViewHolder(binding.root)
+    class ViewHolder(val binding: ItemRowUserBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
-        val binding: ItemRowFollowerBinding = ItemRowFollowerBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding: ItemRowUserBinding = ItemRowUserBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
         return ViewHolder(binding)
     }
@@ -23,10 +23,10 @@ class FollowerListAdapter(private var followerList: ArrayList<FollowerItem>) : R
         val follower = followerList[position]
 
         Glide.with(holder.itemView)
-            .load(follower.followerAvatar)
-            .apply(RequestOptions().override(55,55))
-            .into(holder.binding.itemFollowerAvatar)
-         holder.binding.followerUsername.text = follower.followerUsername
+                .load(follower.followerAvatar)
+                .apply(RequestOptions().override(55, 55))
+                .into(holder.binding.itemUserAvatar)
+        holder.binding.userUsername.text = follower.followerUsername
     }
 
     override fun getItemCount(): Int {

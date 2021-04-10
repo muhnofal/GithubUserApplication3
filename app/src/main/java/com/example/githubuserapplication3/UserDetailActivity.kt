@@ -1,4 +1,5 @@
 package com.example.githubuserapplication3
+
 import android.content.ContentValues
 import android.database.Cursor
 import android.os.Bundle
@@ -12,11 +13,11 @@ import com.bumptech.glide.Glide
 import com.example.githubuserapplication3.adapter.ViewPagerAdapter
 import com.example.githubuserapplication3.data.ApiService
 import com.example.githubuserapplication3.data.DataRetrofit.getData
-import com.example.githubuserapplication3.model.UserItem
 import com.example.githubuserapplication3.databinding.ActivityUserDetailBinding
 import com.example.githubuserapplication3.db.DatabaseContract
 import com.example.githubuserapplication3.db.DatabaseContract.FavoriteColumns.Companion.CONTENT_URI
 import com.example.githubuserapplication3.db.FavoriteHelper
+import com.example.githubuserapplication3.model.UserItem
 import com.google.android.material.tabs.TabLayoutMediator
 import retrofit2.Call
 import retrofit2.Callback
@@ -31,9 +32,10 @@ class UserDetailActivity : AppCompatActivity() {
     private var statusFavorite: Boolean = false
     private var user: UserItem? = null
 
-    companion object{
+    companion object {
         const val EXTRA_USER = "extra_username"
         private const val TAG_CHECK_FAVORITE_2 = "check_favorite_2"
+
         @StringRes
         private val TAB_TITLES = intArrayOf(
                 R.string.tab_text_1,
@@ -64,7 +66,7 @@ class UserDetailActivity : AppCompatActivity() {
         //ViewPager
         val viewPagerAdapter = ViewPagerAdapter(this)
         binding.viewPager.adapter = viewPagerAdapter
-        TabLayoutMediator(binding.tabLayout, binding.viewPager){ tab, position ->
+        TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
             tab.text = resources.getString(TAB_TITLES[position])
         }.attach()
         viewPagerAdapter.id = username //Send Data to ViewPagerAdapter
@@ -76,12 +78,12 @@ class UserDetailActivity : AppCompatActivity() {
         requestData(username.orEmpty())
 
         favoriteCheck()
-        binding.floatingActionButton.setOnClickListener{
-            if(statusFavorite){
+        binding.floatingActionButton.setOnClickListener {
+            if (statusFavorite) {
                 favoriteHelper.deleteByUsername(user?.username.toString())
                 statusFavorite = false
                 setStatusFavorite(statusFavorite)
-            }else{
+            } else {
                 contentResolver.insert(CONTENT_URI, values)
                 statusFavorite = true
                 setStatusFavorite(statusFavorite)
@@ -138,13 +140,13 @@ class UserDetailActivity : AppCompatActivity() {
         })
     }
 
-    fun showLoading(state: Boolean){
-        if(state){
+    fun showLoading(state: Boolean) {
+        if (state) {
             binding.progressbar.visibility = View.VISIBLE
             binding.topContainer.visibility = View.GONE
             binding.tabLayout.visibility = View.GONE
             binding.viewPager.visibility = View.GONE
-        }else{
+        } else {
             binding.progressbar.visibility = View.GONE
             binding.topContainer.visibility = View.VISIBLE
             binding.topContainer.visibility = View.VISIBLE
@@ -154,18 +156,18 @@ class UserDetailActivity : AppCompatActivity() {
     }
 
     @JvmName("setStatusFavorite1")
-    fun setStatusFavorite(statusFavorite: Boolean){
-        if(statusFavorite){
+    fun setStatusFavorite(statusFavorite: Boolean) {
+        if (statusFavorite) {
             binding.floatingActionButton.setImageResource(R.drawable.ic_baseline_favorite_24)
-        }else{
+        } else {
             binding.floatingActionButton.setImageResource(R.drawable.ic_baseline_favorite_border_24)
         }
     }
 
-    private fun favoriteCheck(){
-        val value:String? = user?.username
+    private fun favoriteCheck() {
+        val value: String? = user?.username
         val cursor: Cursor = favoriteHelper.queryByUsername(value)
-        if (cursor.moveToNext()){
+        if (cursor.moveToNext()) {
             statusFavorite = true
             setStatusFavorite(statusFavorite)
         }

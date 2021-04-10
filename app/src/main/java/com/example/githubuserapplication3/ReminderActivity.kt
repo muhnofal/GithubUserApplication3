@@ -2,17 +2,17 @@ package com.example.githubuserapplication3
 
 import android.content.Context
 import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.example.githubuserapplication3.alarm.AlarmReceiver
 import com.example.githubuserapplication3.databinding.ActivityReminderBinding
 
-class ReminderActivity : AppCompatActivity(){
+class ReminderActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityReminderBinding
     private lateinit var alarmReceiver: AlarmReceiver
 
-    companion object{
+    companion object {
         const val BOOLEAN_KEY = "boolean_key"
     }
 
@@ -29,9 +29,9 @@ class ReminderActivity : AppCompatActivity(){
         loadData()
 
         binding.reminderSwitch.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked){
+            if (isChecked) {
                 alarmReceiver.setDailyReminder(this, AlarmReceiver.TYPE_REPEATING, resources.getString(R.string.hello_notif))
-            }else{
+            } else {
                 alarmReceiver.cancelReminder(this, AlarmReceiver.TYPE_REPEATING)
             }
             saveData(isChecked)

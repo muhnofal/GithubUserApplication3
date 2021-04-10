@@ -17,7 +17,7 @@ import java.util.*
 
 class AlarmReceiver : BroadcastReceiver() {
 
-    companion object{
+    companion object {
         const val TYPE_REPEATING = "RepeatingAlarm"
         const val EXTRA_MESSAGE = "message"
         const val EXTRA_TYPE = "type"
@@ -37,7 +37,7 @@ class AlarmReceiver : BroadcastReceiver() {
 
     }
 
-    fun setDailyReminder(context: Context, type: String, message: String){
+    fun setDailyReminder(context: Context, type: String, message: String) {
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val intent = Intent(context, AlarmReceiver::class.java)
 
@@ -56,7 +56,7 @@ class AlarmReceiver : BroadcastReceiver() {
         Toast.makeText(context, R.string.reminder_on, Toast.LENGTH_SHORT).show()
     }
 
-    fun cancelReminder(context: Context, type: String){
+    fun cancelReminder(context: Context, type: String) {
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val intent = Intent(context, AlarmReceiver::class.java)
         val requestCode = ID_REPEATING
@@ -67,7 +67,7 @@ class AlarmReceiver : BroadcastReceiver() {
         Toast.makeText(context, R.string.reminder_off, Toast.LENGTH_SHORT).show()
     }
 
-    private fun showAlarmNotification(context: Context, message: String){
+    private fun showAlarmNotification(context: Context, message: String) {
         val channelId = "Channel_1"
         val channelName = "AlarmManager channel"
 
@@ -89,7 +89,7 @@ class AlarmReceiver : BroadcastReceiver() {
                 .setSound(alarmSound)
                 .setAutoCancel(true)
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel(
                     channelId,
                     channelName,

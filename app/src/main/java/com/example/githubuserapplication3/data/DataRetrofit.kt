@@ -10,9 +10,9 @@ object DataRetrofit {
 
     fun getData(): Retrofit? {
         retrofit = Retrofit.Builder()
-            .baseUrl(Base_url)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
+                .baseUrl(Base_url)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
         return retrofit
     }
 

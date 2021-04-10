@@ -14,14 +14,14 @@ internal class FavoriteHelper(context: Context) {
     private var dataBaseHelper: DatabaseHelper = DatabaseHelper(context)
     private lateinit var database: SQLiteDatabase
 
-    companion object{
+    companion object {
         private const val DATABASE_TABLE = TABLE_NAME
         private var INSTANCE: FavoriteHelper? = null
 
         fun getInstance(context: Context): FavoriteHelper =
-            INSTANCE ?: synchronized(this) {
-                INSTANCE ?: FavoriteHelper(context)
-            }
+                INSTANCE ?: synchronized(this) {
+                    INSTANCE ?: FavoriteHelper(context)
+                }
     }
 
     @Throws(SQLException::class)
@@ -46,6 +46,7 @@ internal class FavoriteHelper(context: Context) {
                 null,
                 "$_ID ASC")
     }
+
     fun queryById(id: String): Cursor {
         return database.query(DATABASE_TABLE, null, "$_ID = ?", arrayOf(id), null, null, null, null)
     }
@@ -66,7 +67,7 @@ internal class FavoriteHelper(context: Context) {
         return database.delete(TABLE_NAME, "$_ID = '$id'", null)
     }
 
-    fun deleteByUsername(id: String): Int{
+    fun deleteByUsername(id: String): Int {
         return database.delete(TABLE_NAME, "$USERNAME = '$id'", null)
     }
 
